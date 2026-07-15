@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="night">
+<html lang="en" data-theme="day">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -209,12 +209,12 @@ h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.45rem,2.6vw,1.9re
 /* ══════════════════════════════════════
    ABOUT — two column: bio + info strip
 ══════════════════════════════════════ */
-.about-cols { display:grid; grid-template-columns:3fr 2fr; gap:60px; align-items:start; }
+
 .bio p { color:var(--text2); font-size:.95rem; line-height:1.9; margin-bottom:16px; }
-.info-strip { display:flex; flex-direction:column; gap:1px; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
-.info-row { padding:16px 20px; background:var(--bg3); border-bottom:1px solid var(--border); transition:background .15s; }
-.info-row:last-child { border-bottom:none; }
-.info-row:hover { background:var(--bg4); }
+
+
+
+
 .info-lbl { font-family:'JetBrains Mono',monospace; font-size:.58rem; color:var(--text3); letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
 .info-val { font-size:.88rem; color:var(--text); line-height:1.4; }
 .info-val a { color:var(--link-c); }
@@ -236,8 +236,8 @@ h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.45rem,2.6vw,1.9re
   background:linear-gradient(to bottom, var(--bdr-acc), transparent);
 }
 .tl-date {
-  font-family:'JetBrains Mono',monospace; font-size:.68rem;
-  color:var(--text3); letter-spacing:.04em; padding-top:2px; line-height:1.5;
+  font-family:'JetBrains Mono',monospace; font-size:.7rem;
+  color:var(--cyan); letter-spacing:.04em; padding-top:2px; line-height:1.6; font-weight:500;
 }
 .tl-body { position:relative; padding-left:18px; }
 .tl-body::before {
@@ -559,7 +559,7 @@ footer a { color:var(--text3); }
    RESPONSIVE
 ══════════════════════════════════════ */
 @media(max-width:800px) {
-  .about-cols,.journey-cols,.reading-cols,.contact-cols { grid-template-columns:1fr; gap:32px; }
+  .journey-cols,.reading-cols,.contact-cols { grid-template-columns:1fr; gap:32px; }
   .nav-links { display:none; }
   h1 { font-size:2.1rem; }
   section { padding:64px 5%; }
@@ -576,17 +576,15 @@ footer a { color:var(--text3); }
   <a href="#hero" class="nav-brand">Tapendu Rana</a>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
       <li><a href="#journey">Journey</a></li>
       <li><a href="#research">Research</a></li>
-      <li><a href="#publications">Publications</a></li>
       <li><a href="#travel">Travel</a></li>
       <li><a href="#reading">Reading</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
       <div class="t-icons"><span class="t-sun">☀︎</span><span class="t-moon">☽</span></div>
-      <span class="t-label" id="t-label">Night</span>
+      <span class="t-label" id="t-label">Day</span>
     </button>
   </div>
 </nav>
@@ -600,7 +598,7 @@ footer a { color:var(--text3); }
     <p class="hero-role">Mathematician — Harmonic Analysis & PDE</p>
     <p class="hero-sub">
       Working on singular integrals, maximal functions, and the spectral theory of symmetric spaces
-      at the <strong>Ghent Analysis & PDE Center</strong> under Prof. Michael Ruzhansky. This website is a work in progress, needs to be updated!
+      at the <strong>Ghent Analysis & PDE Center</strong> under Prof. Michael Ruzhansky.
     </p>
     <div class="hero-tags">
       <span class="tag ac">Harmonic Analysis</span>
@@ -612,32 +610,8 @@ footer a { color:var(--text3); }
     </div>
     <div class="cta">
       <a href="https://drive.google.com/file/d/1bgmCQTtldDgyb452GQC2DCquKjfEloOq/view?usp=sharing" class="btn btn-p" target="_blank">↓ Download CV</a>
-      <a href="#publications" class="btn btn-g">Publications →</a>
+      <a href="#research" class="btn btn-g">Publications →</a>
       <a href="#contact" class="btn btn-g">Contact →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ ABOUT ══ -->
-<section id="about">
-  <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">01</span><h2>About</h2><div class="sec-line"></div></div>
-    <div class="about-cols">
-      <div class="bio reveal">
-        <p>I am a BOF postdoctoral researcher in the <strong>Ghent Analysis & PDE Center</strong> at Ghent University, Belgium, working under the supervision of Prof. <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a>.</p>
-        <p>My work sits at the intersection of classical harmonic analysis and modern geometric analysis — studying how integral operators behave on curved and group-theoretic spaces, where the usual Euclidean intuition breaks down in beautiful and often surprising ways.</p>
-        <p>I am particularly drawn to problems on Riemannian symmetric spaces and homogeneous trees: spaces that carry rich algebraic symmetry but whose geometry is fundamentally non-Euclidean. Tools from representation theory, spectral theory, and real analysis all come together here.</p>
-        <p>Together with colleagues, I co-organize the weekly online <a href="https://analysis-pde.org/ghent-methusalem-junior-seminar/" target="_blank">Ghent Methusalem Junior Seminar</a>. If you are interested in giving a talk or attending, feel free to reach out.</p>
-      </div>
-      <div class="info-strip reveal">
-        <div class="info-row"><div class="info-lbl">Position</div><div class="info-val">BOF Postdoctoral Researcher</div></div>
-        <div class="info-row"><div class="info-lbl">Institution</div><div class="info-val">Ghent University, Belgium</div></div>
-        <div class="info-row"><div class="info-lbl">Research Group</div><div class="info-val">Ghent Analysis & PDE Center</div></div>
-        <div class="info-row"><div class="info-lbl">Supervisor</div><div class="info-val"><a href="https://ruzhansky.org/" target="_blank">Prof. Michael Ruzhansky</a></div></div>
-        <div class="info-row"><div class="info-lbl">Office</div><div class="info-val">Building S8, Krijgslaan 281<br>B-9000 Ghent, Belgium</div></div>
-        <div class="info-row"><div class="info-lbl">Personal email</div><div class="info-val"><a href="mailto:tapendurana@gmail.com">tapendurana@gmail.com</a></div></div>
-        <div class="info-row"><div class="info-lbl">University email</div><div class="info-val"><a href="mailto:tapendu.rana@ugent.be">tapendu.rana@ugent.be</a></div></div>
-      </div>
     </div>
   </div>
 </section>
@@ -645,14 +619,14 @@ footer a { color:var(--text3); }
 <!-- ══ JOURNEY ══ -->
 <section id="journey">
   <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">02</span><h2>Journey</h2><div class="sec-line"></div></div>
+    <div class="sec-hd reveal"><span class="sec-num">01</span><h2>Journey</h2><div class="sec-line"></div></div>
     <div class="journey-cols">
 
       <div class="reveal">
         <h3>Positions</h3>
         <div class="timeline">
           <div class="tl-item">
-            <div class="tl-date">2023 —<br>present</div>
+            <div class="tl-date">2023 —<br><span style="color:var(--green);font-weight:600;">present</span></div>
             <div class="tl-body">
               <div class="tl-title">BOF Postdoctoral Researcher</div>
               <div class="tl-place">Ghent University, Belgium</div>
@@ -697,7 +671,7 @@ footer a { color:var(--text3); }
 <!-- ══ RESEARCH ══ -->
 <section id="research">
   <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">03</span><h2>Research</h2><div class="sec-line"></div></div>
+    <div class="sec-hd reveal"><span class="sec-num">02</span><h2>Research</h2><div class="sec-line"></div></div>
     <p class="research-intro reveal">
       My research is centered on harmonic analysis on non-Euclidean geometric structures —
       Riemannian symmetric spaces, homogeneous trees, and Lie groups — where curvature and algebraic symmetry
@@ -745,14 +719,12 @@ footer a { color:var(--text3); }
         <a href="https://analysis-pde.org/ghent-methusalem-junior-seminar/" target="_blank" class="btn btn-g" style="font-size:.78rem;padding:7px 16px;">Visit page →</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ══ PUBLICATIONS ══ -->
-<section id="publications">
-  <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">04</span><h2>Publications</h2><div class="sec-line"></div></div>
-
+    <!-- Publications merged -->
+    <div class="reveal" style="margin-top:52px;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:-.02em;color:var(--text);white-space:nowrap;">Publications</h3>
+        <div style="flex:1;height:1px;background:linear-gradient(to right,var(--bdr-acc),transparent);"></div>
+      </div>
     <div class="reveal">
       <div class="pub-group-title">Preprints</div>
       <div class="pub-list">
@@ -779,7 +751,7 @@ footer a { color:var(--text3); }
             <div class="pub-venue"><em></em>, 2025</div>
             <div class="pub-links">
               <span class="pill pill-pub">Published</span>
-              <a href=https://link.springer.com/article/10.1007/s00209-025-03762-2" target="_blank" class="pill pill-outline">Scholar ↗</a>
+              <a href="https://link.springer.com/article/10.1007/s00209-025-03762-2" target="_blank" class="pill pill-outline">Scholar ↗</a>
               <a href="https://www.researchgate.net/profile/Tapendu-Rana" target="_blank" class="pill pill-outline">ResearchGate ↗</a>
             </div>
           </div>
@@ -791,13 +763,14 @@ footer a { color:var(--text3); }
         <a href="https://www.researchgate.net/profile/Tapendu-Rana" target="_blank" style="color:var(--text2);">ResearchGate</a>
       </p>
     </div>
+    </div>
   </div>
 </section>
 
 <!-- ══ TRAVEL ══ -->
 <section id="travel">
   <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">05</span><h2>Travel</h2><div class="sec-line"></div></div>
+    <div class="sec-hd reveal"><span class="sec-num">03</span><h2>Travel</h2><div class="sec-line"></div></div>
     <div class="travel-legend reveal">
       <span>◆ host</span>
       <span>† online</span>
@@ -1063,7 +1036,7 @@ footer a { color:var(--text3); }
 <!-- ══ READING ══ -->
 <section id="reading">
   <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">06</span><h2>Reading List</h2><div class="sec-line"></div></div>
+    <div class="sec-hd reveal"><span class="sec-num">04</span><h2>Reading List</h2><div class="sec-line"></div></div>
     <div class="reading-cols">
       <div class="reveal">
         <div class="reading-label"><span class="pulse-dot"></span>Currently reading</div>
@@ -1108,7 +1081,7 @@ footer a { color:var(--text3); }
 <!-- ══ CONTACT ══ -->
 <section id="contact">
   <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">07</span><h2>Contact</h2><div class="sec-line"></div></div>
+    <div class="sec-hd reveal"><span class="sec-num">05</span><h2>Contact</h2><div class="sec-line"></div></div>
     <div class="contact-cols">
       <div class="reveal">
         <p class="contact-note">Feel free to reach out to discuss mathematics, explore collaboration, or join the Ghent Methusalem Junior Seminar as a speaker or attendee.</p>
@@ -1145,12 +1118,10 @@ function toggleTheme() {
   updatePColors();
 }
 (function() {
-  const s = localStorage.getItem('tr_theme');
-  if (s) {
-    document.documentElement.setAttribute('data-theme', s);
-    const l = document.getElementById('t-label');
-    if (l) l.textContent = s === 'night' ? 'Night' : 'Day';
-  }
+  const s = localStorage.getItem('tr_theme') || 'day';
+  document.documentElement.setAttribute('data-theme', s);
+  const l = document.getElementById('t-label');
+  if (l) l.textContent = s === 'night' ? 'Night' : 'Day';
 })();
 
 /* ── Canvas particles ── */
