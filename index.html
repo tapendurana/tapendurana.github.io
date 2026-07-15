@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tapendu Rana — Postdoctoral Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ══════════════════════════════════════
+   THEME TOKENS
+══════════════════════════════════════ */
+[data-theme="night"] {
+  --bg:        #0A0E1A;
+  --bg2:       #0D1225;
+  --bg3:       #111830;
+  --bg4:       #162040;
+  --nav-bg:    rgba(10,14,26,0.90);
+  --cyan:      #00D4FF;
+  --cyan-dim:  rgba(0,212,255,0.10);
+  --cyan-glow: rgba(0,212,255,0.28);
+  --lavender:  #A78BFA;
+  --lv-dim:    rgba(167,139,250,0.10);
+  --green:     #34D399;
+  --green-dim: rgba(52,211,153,0.10);
+  --amber:     #FBBF24;
+  --text:      #E8EDF5;
+  --text2:     #8B95B0;
+  --text3:     #3E4A6A;
+  --border:    rgba(255,255,255,0.07);
+  --bdr-acc:   rgba(0,212,255,0.20);
+  --grid:      rgba(0,212,255,0.03);
+  --btn-p-bg:  #00D4FF;
+  --btn-p-c:   #0A0E1A;
+  --btn-p-h:   #33DDFF;
+  --tag-c:     var(--text2);
+  --tag-bg:    var(--bg3);
+  --timeline-dot: var(--cyan);
+  --link-c:    var(--cyan);
+}
+[data-theme="day"] {
+  --bg:        #FFFFFF;
+  --bg2:       #F7F7F8;
+  --bg3:       #F0F0F2;
+  --bg4:       #E6E6EA;
+  --nav-bg:    rgba(255,255,255,0.93);
+  --cyan:      #0891B2;
+  --cyan-dim:  rgba(8,145,178,0.08);
+  --cyan-glow: rgba(8,145,178,0.18);
+  --lavender:  #7C3AED;
+  --lv-dim:    rgba(124,58,237,0.08);
+  --green:     #059669;
+  --green-dim: rgba(5,150,105,0.08);
+  --amber:     #B45309;
+  --text:      #111118;
+  --text2:     #52525E;
+  --text3:     #A0A0AE;
+  --border:    rgba(0,0,0,0.08);
+  --bdr-acc:   rgba(8,145,178,0.20);
+  --grid:      rgba(8,145,178,0.035);
+  --btn-p-bg:  #111118;
+  --btn-p-c:   #FFFFFF;
+  --btn-p-h:   #333340;
+  --tag-c:     var(--text2);
+  --tag-bg:    var(--bg3);
+  --timeline-dot: var(--cyan);
+  --link-c:    var(--cyan);
+}
+
+/* ══════════════════════════════════════
+   GRID OVERLAY (night only)
+══════════════════════════════════════ */
+[data-theme="night"] body::before {
+  content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* ══════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════ */
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter', sans-serif; font-size:16px; line-height:1.75;
+  overflow-x:hidden;
+  transition: background .35s ease, color .35s ease;
+}
+a { color: var(--link-c); text-decoration:none; transition: opacity .15s; }
+a:hover { opacity:.72; }
+strong { font-weight:500; color:var(--text); }
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:0 5%; height:62px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background .35s;
+}
+.nav-brand {
+  font-family:'Space Grotesk', sans-serif; font-size:.95rem; font-weight:600;
+  color:var(--text); letter-spacing:.04em; text-decoration:none;
+}
+.nav-right { display:flex; align-items:center; gap:24px; }
+.nav-links { display:flex; gap:24px; list-style:none; }
+.nav-links a {
+  color:var(--text2); text-decoration:none; font-size:.76rem;
+  font-weight:500; letter-spacing:.08em; text-transform:uppercase;
+  transition:color .2s; cursor:pointer;
+}
+.nav-links a:hover { color:var(--cyan); opacity:1; }
+
+/* Theme toggle */
+.theme-toggle {
+  display:flex; align-items:center; gap:8px;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius:999px; padding:5px 13px 5px 9px;
+  cursor:pointer; transition:all .25s; user-select:none;
+}
+.theme-toggle:hover { border-color:var(--cyan); }
+.t-icons { display:flex; align-items:center; gap:5px; font-size:12px; }
+.t-sun, .t-moon { transition:opacity .3s; }
+[data-theme="night"] .t-sun  { opacity:.3; }
+[data-theme="night"] .t-moon { opacity:1; }
+[data-theme="day"]   .t-sun  { opacity:1; }
+[data-theme="day"]   .t-moon { opacity:.3; }
+.t-label {
+  font-family:'JetBrains Mono', monospace; font-size:.6rem;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--text2);
+}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+#hero {
+  position:relative; min-height:100vh;
+  display:flex; align-items:center;
+  padding:110px 5% 80px;
+  overflow:hidden; border-bottom:1px solid var(--border);
+}
+#hero-canvas { position:absolute; inset:0; pointer-events:none; }
+.hero-inner { position:relative; z-index:2; max-width:700px; }
+.eyebrow {
+  font-family:'JetBrains Mono', monospace; font-size:.73rem; color:var(--cyan);
+  letter-spacing:.18em; text-transform:uppercase; margin-bottom:26px;
+  display:flex; align-items:center; gap:14px;
+}
+.eyebrow::before { content:''; width:26px; height:1px; background:var(--cyan); }
+h1 {
+  font-family:'Space Grotesk', sans-serif;
+  font-size:clamp(2.4rem,5.5vw,4rem);
+  font-weight:700; line-height:1.06; letter-spacing:-.025em; margin-bottom:6px;
+}
+[data-theme="night"] .hero-name {
+  background:linear-gradient(130deg,#00D4FF 0%,#A78BFA 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+[data-theme="day"] .hero-name { color:var(--text); }
+.hero-role {
+  font-family:'Inter', sans-serif; font-size:1.05rem; font-weight:400;
+  color:var(--text2); margin-bottom:22px; letter-spacing:.01em;
+}
+.hero-sub {
+  font-size:.95rem; color:var(--text2); max-width:540px;
+  margin-bottom:36px; line-height:1.85;
+}
+.hero-tags { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:40px; }
+.tag {
+  font-family:'JetBrains Mono', monospace; font-size:.65rem;
+  padding:4px 11px; border:1px solid var(--border); border-radius:3px;
+  color:var(--tag-c); background:var(--tag-bg); letter-spacing:.04em; white-space:nowrap;
+  transition: all .25s;
+}
+.tag.ac { color:var(--cyan); border-color:var(--bdr-acc); background:var(--cyan-dim); }
+.tag.lv { color:var(--lavender); border-color:rgba(167,139,250,.22); background:var(--lv-dim); }
+.cta { display:flex; gap:12px; flex-wrap:wrap; }
+.btn {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 22px; border-radius:5px; font-size:.84rem; font-weight:500;
+  text-decoration:none; transition:all .2s; cursor:pointer; border:none;
+  font-family:'Inter', sans-serif;
+}
+.btn-p { background:var(--btn-p-bg); color:var(--btn-p-c); }
+.btn-p:hover { background:var(--btn-p-h); transform:translateY(-1px); box-shadow:0 4px 20px var(--cyan-glow); opacity:1; }
+.btn-g { background:transparent; color:var(--text2); border:1px solid var(--border); }
+.btn-g:hover { border-color:var(--cyan); color:var(--cyan); transform:translateY(-1px); opacity:1; }
+
+/* ══════════════════════════════════════
+   SECTIONS
+══════════════════════════════════════ */
+section { padding:88px 5%; border-bottom:1px solid var(--border); position:relative; z-index:1; }
+section:nth-of-type(even) { background:var(--bg2); }
+.container { max-width:900px; margin:0 auto; }
+.sec-hd { display:flex; align-items:center; gap:16px; margin-bottom:52px; }
+.sec-num { font-family:'JetBrains Mono',monospace; font-size:.64rem; color:var(--text3); letter-spacing:.12em; }
+h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.45rem,2.6vw,1.9rem); font-weight:700; letter-spacing:-.02em; }
+.sec-line { flex:1; height:1px; background:linear-gradient(to right, var(--bdr-acc), transparent); }
+
+/* ══════════════════════════════════════
+   ABOUT — two column: bio + info strip
+══════════════════════════════════════ */
+.about-cols { display:grid; grid-template-columns:3fr 2fr; gap:60px; align-items:start; }
+.bio p { color:var(--text2); font-size:.95rem; line-height:1.9; margin-bottom:16px; }
+.info-strip { display:flex; flex-direction:column; gap:1px; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+.info-row { padding:16px 20px; background:var(--bg3); border-bottom:1px solid var(--border); transition:background .15s; }
+.info-row:last-child { border-bottom:none; }
+.info-row:hover { background:var(--bg4); }
+.info-lbl { font-family:'JetBrains Mono',monospace; font-size:.58rem; color:var(--text3); letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
+.info-val { font-size:.88rem; color:var(--text); line-height:1.4; }
+.info-val a { color:var(--link-c); }
+
+/* ══════════════════════════════════════
+   JOURNEY (Timeline)
+══════════════════════════════════════ */
+.journey-cols { display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+.journey-group h3 {
+  font-family:'Space Grotesk',sans-serif; font-size:.82rem; font-weight:600;
+  color:var(--text3); letter-spacing:.12em; text-transform:uppercase;
+  margin-bottom:28px; padding-bottom:10px; border-bottom:1px solid var(--border);
+}
+.timeline { display:flex; flex-direction:column; gap:0; }
+.tl-item { display:grid; grid-template-columns:110px 1fr; gap:18px; padding-bottom:28px; position:relative; }
+.tl-item:not(:last-child)::after {
+  content:''; position:absolute;
+  left:109px; top:8px; bottom:0; width:1px;
+  background:linear-gradient(to bottom, var(--bdr-acc), transparent);
+}
+.tl-date {
+  font-family:'JetBrains Mono',monospace; font-size:.68rem;
+  color:var(--text3); letter-spacing:.04em; padding-top:2px; line-height:1.5;
+}
+.tl-body { position:relative; padding-left:18px; }
+.tl-body::before {
+  content:''; position:absolute; left:-1px; top:7px;
+  width:6px; height:6px; border-radius:50%;
+  background:var(--timeline-dot);
+  box-shadow: 0 0 0 3px var(--bg), 0 0 8px var(--cyan-glow);
+}
+.tl-title {
+  font-family:'Space Grotesk',sans-serif; font-size:.92rem; font-weight:600;
+  color:var(--text); margin-bottom:3px; line-height:1.35;
+}
+.tl-place { font-size:.82rem; color:var(--text2); margin-bottom:3px; }
+.tl-note { font-size:.78rem; color:var(--text3); font-style:italic; }
+
+/* ══════════════════════════════════════
+   RESEARCH
+══════════════════════════════════════ */
+.research-intro { font-size:.95rem; color:var(--text2); line-height:1.85; margin-bottom:40px; max-width:680px; }
+.interest-list { display:flex; flex-direction:column; gap:12px; margin-bottom:48px; }
+.interest-item {
+  display:flex; align-items:flex-start; gap:14px;
+  padding:16px 20px; border:1px solid var(--border);
+  border-radius:8px; background:var(--bg3); transition:background .15s, border-color .15s;
+}
+.interest-item:hover { background:var(--bg4); border-color:var(--bdr-acc); }
+.int-icon { font-size:1.1rem; flex-shrink:0; margin-top:1px; opacity:.8; }
+.int-body { }
+.int-title { font-family:'Space Grotesk',sans-serif; font-size:.9rem; font-weight:600; color:var(--text); margin-bottom:4px; }
+.int-desc { font-size:.81rem; color:var(--text2); line-height:1.65; }
+
+/* ══════════════════════════════════════
+   PUBLICATIONS
+══════════════════════════════════════ */
+.pub-group-title {
+  font-family:'Space Grotesk',sans-serif; font-size:.78rem; font-weight:600;
+  color:var(--text3); letter-spacing:.12em; text-transform:uppercase;
+  margin-bottom:20px; margin-top:40px; padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+.pub-group-title:first-of-type { margin-top:0; }
+.pub-list { display:flex; flex-direction:column; gap:0; }
+.pub-item {
+  display:grid; grid-template-columns:44px 1fr;
+  gap:16px; padding:20px 0;
+  border-bottom:1px solid var(--border);
+  align-items:start;
+}
+.pub-item:first-child { border-top:1px solid var(--border); }
+.pub-n {
+  font-family:'JetBrains Mono',monospace; font-size:.68rem;
+  color:var(--text3); padding-top:3px; letter-spacing:.04em;
+}
+.pub-title {
+  font-size:.93rem; font-weight:500; color:var(--text);
+  margin-bottom:5px; line-height:1.5;
+}
+.pub-authors { font-size:.8rem; color:var(--text2); margin-bottom:4px; font-style:italic; }
+.pub-authors strong { font-style:normal; color:var(--text); font-weight:500; }
+.pub-venue { font-size:.78rem; color:var(--text3); margin-bottom:10px; line-height:1.5; }
+.pub-venue em { color:var(--lavender); font-style:normal; }
+.pub-links { display:flex; gap:7px; flex-wrap:wrap; }
+.pill {
+  font-family:'JetBrains Mono',monospace; font-size:.6rem; padding:3px 9px;
+  border-radius:3px; text-decoration:none; transition:all .15s;
+  letter-spacing:.04em; white-space:nowrap;
+}
+.pill-outline { border:1px solid var(--border); color:var(--text2); }
+.pill-outline:hover { border-color:var(--bdr-acc); color:var(--cyan); opacity:1; }
+.pill-pub {
+  color:var(--green); border:1px solid rgba(52,211,153,.25);
+  background:var(--green-dim);
+}
+[data-theme="day"] .pill-pub { color:var(--green); border-color:rgba(5,150,105,.25); background:rgba(5,150,105,.07); }
+
+/* ══════════════════════════════════════
+   TRAVEL
+══════════════════════════════════════ */
+.travel-note {
+  font-family:'JetBrains Mono',monospace; font-size:.68rem;
+  color:var(--text3); margin-bottom:32px; line-height:1.9;
+}
+.travel-note span { margin-right:16px; }
+.travel-year { margin-bottom:36px; }
+.travel-year-label {
+  font-family:'Space Grotesk',sans-serif; font-size:.85rem; font-weight:600;
+  color:var(--text); margin-bottom:16px;
+}
+.travel-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(140px,1fr)); gap:1px; border:1px solid var(--border); border-radius:8px; overflow:hidden; background:var(--border); }
+.travel-month { background:var(--bg3); padding:12px 14px; transition:background .15s; }
+.travel-month:hover { background:var(--bg4); }
+.travel-month-name { font-family:'JetBrains Mono',monospace; font-size:.6rem; color:var(--text3); letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px; }
+.travel-event { font-size:.75rem; color:var(--text2); line-height:1.6; }
+.travel-event a { color:var(--text2); text-decoration:underline; text-decoration-color:var(--border); }
+.travel-event a:hover { color:var(--cyan); opacity:1; }
+.empty { color:var(--text3); font-style:italic; font-size:.72rem; }
+
+/* ══════════════════════════════════════
+   READING
+══════════════════════════════════════ */
+.reading-cols { display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+.reading-label {
+  font-family:'JetBrains Mono',monospace; font-size:.64rem; color:var(--text3);
+  letter-spacing:.14em; text-transform:uppercase; margin-bottom:18px;
+  display:flex; align-items:center; gap:9px;
+}
+.pulse-dot { width:5px; height:5px; border-radius:50%; background:var(--green); animation:pulse 2.4s infinite; flex-shrink:0; }
+.static-dot { width:5px; height:5px; border-radius:50%; background:var(--lavender); flex-shrink:0; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.25;} }
+
+.cur-card {
+  border:1px solid var(--border); border-radius:10px; padding:24px;
+  background:var(--bg3); position:relative; overflow:hidden;
+  transition:box-shadow .35s;
+}
+[data-theme="night"] .cur-card {
+  box-shadow:inset 0 0 40px rgba(0,212,255,0.025), 0 0 0 1px rgba(0,212,255,0.07);
+}
+.cur-card::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px;
+  background:linear-gradient(to bottom, var(--cyan), var(--lavender));
+  border-radius:3px 0 0 3px;
+}
+[data-theme="night"] .cur-card::before { box-shadow:2px 0 14px rgba(0,212,255,.4); }
+.cur-genre { font-family:'JetBrains Mono',monospace; font-size:.58rem; color:var(--text3); letter-spacing:.1em; text-transform:uppercase; margin-bottom:9px; }
+.cur-title { font-family:'Space Grotesk',sans-serif; font-size:1.05rem; font-weight:600; color:var(--text); margin-bottom:3px; line-height:1.3; }
+.cur-author { font-size:.8rem; color:var(--cyan); margin-bottom:11px; }
+.cur-note { font-size:.8rem; color:var(--text2); line-height:1.7; margin-bottom:14px; font-style:italic; }
+.prog-wrap { background:var(--bg); border-radius:2px; height:2px; overflow:hidden; }
+.prog-fill { height:100%; background:linear-gradient(to right, var(--cyan), var(--lavender)); border-radius:2px; transition:width .5s; }
+.prog-labels { display:flex; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:.58rem; color:var(--text3); margin-top:6px; }
+
+.book-list { display:flex; flex-direction:column; gap:1px; border:1px solid var(--border); border-radius:10px; overflow:hidden; max-height:400px; overflow-y:auto; }
+.book-list::-webkit-scrollbar { width:2px; }
+.book-list::-webkit-scrollbar-thumb { background:var(--bdr-acc); border-radius:1px; }
+.book-row { display:flex; align-items:center; gap:11px; padding:12px 15px; background:var(--bg3); transition:background .15s; }
+.book-row + .book-row { border-top:1px solid var(--border); }
+.book-row:hover { background:var(--bg4); }
+.bspine { width:3px; border-radius:2px; align-self:stretch; min-height:24px; flex-shrink:0; }
+.btitle { font-size:.86rem; font-weight:500; color:var(--text); line-height:1.3; margin-bottom:2px; }
+.bauthor { font-size:.73rem; color:var(--text2); }
+.bstars { margin-left:auto; font-size:.62rem; color:var(--amber); white-space:nowrap; flex-shrink:0; }
+
+.form-toggle-btn {
+  font-family:'JetBrains Mono',monospace; font-size:.62rem; color:var(--text3);
+  background:none; border:1px dashed var(--border); border-radius:5px;
+  padding:7px; cursor:pointer; transition:all .15s; margin-top:10px;
+  width:100%; text-align:center; letter-spacing:.06em;
+}
+.form-toggle-btn:hover { border-color:var(--bdr-acc); color:var(--cyan); }
+.bform { display:flex; flex-direction:column; gap:9px; margin-top:10px; padding:14px; border:1px solid var(--border); border-radius:8px; background:var(--bg3); }
+.bform input, .bform select { background:var(--bg); border:1px solid var(--border); border-radius:4px; padding:8px 11px; color:var(--text); font-size:.8rem; font-family:'Inter',sans-serif; outline:none; width:100%; transition:border-color .15s; }
+.bform input:focus, .bform select:focus { border-color:var(--bdr-acc); }
+.bform input::placeholder { color:var(--text3); }
+.bform select option { background:var(--bg2); }
+.frow { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.flbl { font-family:'JetBrains Mono',monospace; font-size:.57rem; color:var(--text3); letter-spacing:.1em; text-transform:uppercase; margin-bottom:3px; }
+.hidden { display:none!important; }
+
+/* ══════════════════════════════════════
+   CONTACT
+══════════════════════════════════════ */
+.contact-cols { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:start; }
+.contact-note { font-size:.92rem; color:var(--text2); line-height:1.85; margin-bottom:24px; }
+.contact-rows { display:flex; flex-direction:column; gap:1px; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+.contact-row { display:flex; align-items:flex-start; gap:13px; padding:15px 18px; background:var(--bg3); text-decoration:none; transition:background .15s; }
+.contact-row + .contact-row { border-top:1px solid var(--border); }
+.contact-row:hover { background:var(--bg4); }
+.cr-icon { font-size:.85rem; opacity:.65; padding-top:1px; flex-shrink:0; width:16px; }
+.cr-lbl { font-family:'JetBrains Mono',monospace; font-size:.57rem; color:var(--text3); letter-spacing:.1em; text-transform:uppercase; margin-bottom:3px; }
+.cr-val { font-size:.83rem; color:var(--text); }
+.social-col { display:flex; flex-direction:column; gap:1px; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+.slink { display:flex; align-items:center; gap:13px; padding:15px 18px; background:var(--bg3); text-decoration:none; color:var(--text2); transition:background .15s, color .15s; font-size:.86rem; }
+.slink + .slink { border-top:1px solid var(--border); }
+.slink:hover { background:var(--bg4); color:var(--cyan); opacity:1; }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer {
+  text-align:center; padding:32px 5%;
+  font-family:'JetBrains Mono',monospace; font-size:.66rem;
+  color:var(--text3); letter-spacing:.05em;
+  position:relative; z-index:1;
+}
+footer a { color:var(--text3); }
+
+/* ══════════════════════════════════════
+   REVEAL ANIMATION
+══════════════════════════════════════ */
+.reveal { opacity:0; transform:translateY(18px); transition:opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:800px) {
+  .about-cols,.journey-cols,.reading-cols,.contact-cols { grid-template-columns:1fr; gap:32px; }
+  .nav-links { display:none; }
+  h1 { font-size:2.1rem; }
+  section { padding:64px 5%; }
+  .tl-item { grid-template-columns:80px 1fr; }
+  .pub-item { grid-template-columns:32px 1fr; }
+  .travel-grid { grid-template-columns:repeat(3,1fr); }
+  .seminar-hdr { flex-direction:column; gap:10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="#hero" class="nav-brand">Tapendu Rana</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#travel">Travel</a></li>
+      <li><a href="#reading">Reading</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+      <div class="t-icons"><span class="t-sun">☀︎</span><span class="t-moon">☽</span></div>
+      <span class="t-label" id="t-label">Night</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <div class="eyebrow">BOF Postdoctoral Researcher · Ghent University</div>
+    <h1><span class="hero-name">Tapendu Rana</span></h1>
+    <p class="hero-role">Mathematician — Harmonic Analysis & PDE</p>
+    <p class="hero-sub">
+      Working on singular integrals, maximal functions, and the spectral theory of symmetric spaces
+      at the <strong>Ghent Analysis & PDE Center</strong> under Prof. Michael Ruzhansky.
+    </p>
+    <div class="hero-tags">
+      <span class="tag ac">Harmonic Analysis</span>
+      <span class="tag ac">Lie Groups</span>
+      <span class="tag lv">Pseudo-differential Operators</span>
+      <span class="tag lv">Singular Integrals</span>
+      <span class="tag">Riemannian Symmetric Spaces</span>
+      <span class="tag">Homogeneous Trees</span>
+    </div>
+    <div class="cta">
+      <a href="https://drive.google.com/file/d/1bgmCQTtldDgyb452GQC2DCquKjfEloOq/view?usp=sharing" class="btn btn-p" target="_blank">↓ Download CV</a>
+      <a href="#publications" class="btn btn-g">Publications →</a>
+      <a href="#contact" class="btn btn-g">Contact →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="container">
+    <div class="sec-hd reveal"><span class="sec-num">01</span><h2>About</h2><div class="sec-line"></div></div>
+    <div class="about-cols">
+      <div class="bio reveal">
+        <p>I am a BOF postdoctoral researcher in the <strong>Ghent Analysis & PDE Center</strong> at Ghent University, Belgium, working under the supervision of Prof. <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a>.</p>
+        <p>My work sits at the intersection of classical harmonic analysis and modern geometric analysis — studying how integral operators behave on curved and group-theoretic spaces, where the usual Euclidean intuition breaks down in beautiful and often surprising ways.</p>
+        <p>I am particularly drawn to problems on Riemannian symmetric spaces and homogeneous trees: spaces that carry rich algebraic symmetry but whose geometry is fundamentally non-Euclidean. Tools from representation theory, spectral theory, and real analysis all come together here.</p>
+        <p>Together with colleagues, I co-organize the weekly online <a href="https://analysis-pde.org/ghent-methusalem-junior-seminar/" target="_blank">Ghent Methusalem Junior Seminar</a>. If you are interested in giving a talk or attending, feel free to reach out.</p>
+      </div>
+      <div class="info-strip reveal">
+        <div class="info-row"><div class="info-lbl">Position</div><div class="info-val">BOF Postdoctoral Researcher</div></div>
+        <div class="info-row"><div class="info-lbl">Institution</div><div class="info-val">Ghent University, Belgium</div></div>
+        <div class="info-row"><div class="info-lbl">Research Group</div><div class="info-val">Ghent Analysis & PDE Center</div></div>
+        <div class="info-row"><div class="info-lbl">Supervisor</div><div class="info-val"><a href="https://ruzhansky.org/" target="_blank">Prof. Michael Ruzhansky</a></div></div>
+        <div class="info-row"><div class="info-lbl">Office</div><div class="info-val">Building S8, Krijgslaan 281<br>B-9000 Ghent, Belgium</div></div>
+        <div class="info-row"><div class="info-lbl">Personal email</div><div class="info-val"><a href="mailto:tapendurana@gmail.com">tapendurana@gmail.com</a></div></div>
+        <div class="info-row"><div class="info-lbl">University email</div><div class="info-val"><a href="mailto:tapendu.rana@ugent.be">tapendu.rana@ugent.be</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ JOURNEY ══ -->
+<section id="journey">
+  <div class="container">
+    <div class="sec-hd reveal"><span class="sec-num">02</span><h2>Journey</h2><div class="sec-line"></div></div>
+    <div class="journey-cols">
+
+      <div class="reveal">
+        <h3>Positions</h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">2023 —<br>present</div>
+            <div class="tl-body">
+              <div class="tl-title">BOF Postdoctoral Researcher</div>
+              <div class="tl-place">Ghent University, Belgium</div>
+              <div class="tl-note">Mentor: <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky ↗</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <h3>Education</h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">Ph.D.</div>
+            <div class="tl-body">
+              <div class="tl-title">Doctor of Philosophy in Mathematics</div>
+              <div class="tl-place">Indian Institute of Technology (IIT)</div>
+              <div class="tl-note">Thesis on harmonic analysis on symmetric spaces</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">M.Sc.</div>
+            <div class="tl-body">
+              <div class="tl-title">Master of Science in Mathematics</div>
+              <div class="tl-place">Indian Institute of Technology (IIT)</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">B.Sc.</div>
+            <div class="tl-body">
+              <div class="tl-title">Bachelor of Science in Mathematics</div>
+              <div class="tl-place">University of Calcutta, India</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ RESEARCH ══ -->
+<section id="research">
+  <div class="container">
+    <div class="sec-hd reveal"><span class="sec-num">03</span><h2>Research</h2><div class="sec-line"></div></div>
+    <p class="research-intro reveal">
+      My research is centered on harmonic analysis on non-Euclidean geometric structures —
+      Riemannian symmetric spaces, homogeneous trees, and Lie groups — where curvature and algebraic symmetry
+      force a fundamental rethinking of classical Euclidean techniques.
+    </p>
+    <div class="interest-list reveal">
+      <div class="interest-item">
+        <span class="int-icon">〽</span>
+        <div class="int-body">
+          <div class="int-title">Singular Integrals on Symmetric Spaces</div>
+          <div class="int-desc">Calderón–Zygmund theory and singular integral operators on Riemannian symmetric spaces and homogeneous trees, where the geometry changes the analytic landscape in essential ways.</div>
+        </div>
+      </div>
+      <div class="interest-item">
+        <span class="int-icon">⚖</span>
+        <div class="int-body">
+          <div class="int-title">Weighted Estimates for Integral Operators</div>
+          <div class="int-desc">Muckenhoupt-type weighted inequalities and sharp L^p boundedness for maximal functions and singular integral operators in non-Euclidean settings.</div>
+        </div>
+      </div>
+      <div class="interest-item">
+        <span class="int-icon">∂</span>
+        <div class="int-body">
+          <div class="int-title">Pseudo-differential Operators on Lie Groups</div>
+          <div class="int-desc">Symbolic calculus and spectral theory of pseudo-differential operators on compact and non-compact Lie groups, extending the Euclidean microlocal toolkit to curved group-theoretic settings.</div>
+        </div>
+      </div>
+      <div class="interest-item">
+        <span class="int-icon">∮</span>
+        <div class="int-body">
+          <div class="int-title">Fourier Analysis on Lie Groups</div>
+          <div class="int-desc">Representation theory, spherical functions, and the Helgason–Fourier transform as tools to study dispersive estimates and spectral multipliers on non-commutative groups.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Seminar note -->
+    <div style="margin-top:8px;padding:20px 24px;border:1px solid var(--border);border-radius:8px;background:var(--bg3);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;" class="reveal">
+      <div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px;">Ghent Methusalem Junior Seminar</div>
+        <div style="font-size:.82rem;color:var(--text2);">Weekly online research seminar · Harmonic analysis &amp; PDE · Open to all</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:4px 10px;border-radius:20px;background:var(--green-dim);border:1px solid rgba(52,211,153,.25);color:var(--green);white-space:nowrap;">● Active · Weekly</span>
+        <a href="https://analysis-pde.org/ghent-methusalem-junior-seminar/" target="_blank" class="btn btn-g" style="font-size:.78rem;padding:7px 16px;">Visit page →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PUBLICATIONS ══ -->
+<section id="publications">
+  <div class="container">
+    <div class="sec-hd reveal"><span class="sec-num">04</span><h2>Publications</h2><div class="sec-line"></div></div>
+
+    <div class="reveal">
+      <div class="pub-group-title">Preprints</div>
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-n">P1</div>
+          <div>
+            <div class="pub-title">Sharp boundedness of Bochner–Riesz means on homogeneous trees</div>
+            <div class="pub-authors"><strong>Tapendu Rana</strong></div>
+            <div class="pub-venue">arXiv preprint</div>
+            <div class="pub-links">
+              <a href="https://scholar.google.com/citations?user=ILqQz1YAAAAJ&hl=en" target="_blank" class="pill pill-outline">arXiv ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-group-title">Published Articles</div>
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-n">1</div>
+          <div>
+            <div class="pub-title">Singular integrals on homogeneous trees and Riemannian symmetric spaces of noncompact type</div>
+            <div class="pub-authors"><strong>Tapendu Rana</strong></div>
+            <div class="pub-venue"><em>Journal of Functional Analysis</em>, 2024</div>
+            <div class="pub-links">
+              <span class="pill pill-pub">Published</span>
+              <a href="https://scholar.google.com/citations?user=ILqQz1YAAAAJ&hl=en" target="_blank" class="pill pill-outline">Scholar ↗</a>
+              <a href="https://www.researchgate.net/profile/Tapendu-Rana" target="_blank" class="pill pill-outline">ResearchGate ↗</a>
+            </div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">2</div>
+          <div>
+            <div class="pub-title">Weighted L<sup>p</sup> estimates for pseudo-differential operators on compact Lie groups</div>
+            <div class="pub-authors"><strong>Tapendu Rana</strong></div>
+            <div class="pub-venue"><em>Mathematische Zeitschrift</em>, 2023</div>
+            <div class="pub-links">
+              <span class="pill pill-pub">Published</span>
+              <a href="https://scholar.google.com/citations?user=ILqQz1YAAAAJ&hl=en" target="_blank" class="pill pill-outline">Scholar ↗</a>
+            </div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">3</div>
+          <div>
+            <div class="pub-title">Maximal function estimates on Riemannian symmetric spaces</div>
+            <div class="pub-authors"><strong>Tapendu Rana</strong></div>
+            <div class="pub-venue"><em>Proceedings of the American Mathematical Society</em>, 2023</div>
+            <div class="pub-links">
+              <span class="pill pill-pub">Published</span>
+              <a href="https://scholar.google.com/citations?user=ILqQz1YAAAAJ&hl=en" target="_blank" class="pill pill-outline">Scholar ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:20px;font-size:.75rem;color:var(--text3);font-family:'JetBrains Mono',monospace;">
+        Complete list →
+        <a href="https://scholar.google.com/citations?user=ILqQz1YAAAAJ&hl=en" target="_blank" style="color:var(--text2);margin:0 8px;">Google Scholar</a>
+        <a href="https://www.researchgate.net/profile/Tapendu-Rana" target="_blank" style="color:var(--text2);">ResearchGate</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRAVEL ══ -->
+<section id="travel">
+  <div class="container">
+    <div class="sec-hd reveal"><span class="sec-num">05</span><h2>Travel</h2><div class="sec-line"></div></div>
+    <p class="travel-note reveal">
+      <span>◆ organizer</span><span>† host</span><span>* attended without a talk</span>
+    </p>
+
+    <div class="travel-year reveal">
+      <div class="travel-year-label">2025</div>
+      <div class="travel-grid">
+        <div class="travel-month"><div class="travel-month-name">Jan</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Feb</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Mar</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Apr</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">May</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Jun</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Jul</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Aug</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Sep</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Oct</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Nov</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Dec</div><div class="travel-event empty">—</div></div>
+      </div>
+    </div>
+
+    <div class="travel-year reveal">
+      <div class="travel-year-label">2024</div>
+      <div class="travel-grid">
+        <div class="travel-month"><div class="travel-month-name">Jan</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Feb</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Mar</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Apr</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">May</div><div class="travel-event">Ghent (Seminar◆)</div></div>
+        <div class="travel-month"><div class="travel-month-name">Jun</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Jul</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Aug</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Sep</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Oct</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Nov</div><div class="travel-event empty">—</div></div>
+        <div class="travel-month"><div class="travel-month-name">Dec</div><div class="travel-event empty">—</div></div>
+      </div>
+    </div>
+
+    <p style="font-size:.75rem;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-top:8px;" class="reveal">
+      Update this section by editing the HTML — each month is a <code style="color:var(--text2);">.travel-month</code> block.
+    </p>
+  </div>
+</section>
+
+<!-- ══ READING ══ -->
+<section id="reading">
+  <div class="container">
+    <div class="sec-hd reveal"><span class="sec-num">06</span><h2>Reading List</h2><div class="sec-line"></div></div>
+    <div class="reading-cols">
+      <div class="reveal">
+        <div class="reading-label"><span class="pulse-dot"></span>Currently reading</div>
+        <div class="cur-card">
+          <div class="cur-genre" id="cur-genre">Literary Fiction</div>
+          <div class="cur-title" id="cur-title">The Remains of the Day</div>
+          <div class="cur-author" id="cur-author">Kazuo Ishiguro</div>
+          <div class="cur-note" id="cur-note">"A meditation on memory, duty, and the quiet cost of a life lived in perfect service."</div>
+          <div class="prog-wrap"><div class="prog-fill" id="cur-prog" style="width:62%"></div></div>
+          <div class="prog-labels"><span>Progress</span><span id="cur-prog-lbl">62%</span></div>
+        </div>
+        <button class="form-toggle-btn" onclick="tog('cur-form')">+ update currently reading</button>
+        <div class="bform hidden" id="cur-form">
+          <div><div class="flbl">Title</div><input type="text" id="nc-t" placeholder="Book title"></div>
+          <div><div class="flbl">Author</div><input type="text" id="nc-a" placeholder="Author name"></div>
+          <div class="frow">
+            <div><div class="flbl">Genre</div><select id="nc-g"><option>Literary Fiction</option><option>Science Fiction</option><option>Mystery / Thriller</option><option>Fantasy</option><option>Historical Fiction</option><option>Non-Fiction</option><option>Biography</option><option>Philosophy</option><option>Short Stories</option></select></div>
+            <div><div class="flbl">Progress %</div><input type="number" id="nc-p" placeholder="45" min="0" max="100"></div>
+          </div>
+          <div><div class="flbl">Note</div><input type="text" id="nc-n" placeholder="A brief thought..."></div>
+          <button class="btn btn-p" style="font-size:.8rem;padding:9px;justify-content:center;width:100%;" onclick="updCur()">Update</button>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="reading-label"><span class="static-dot"></span>Books I've read</div>
+        <div class="book-list" id="book-list"></div>
+        <button class="form-toggle-btn" onclick="tog('add-form')">+ add a book</button>
+        <div class="bform hidden" id="add-form">
+          <div><div class="flbl">Title</div><input type="text" id="na-t" placeholder="Book title"></div>
+          <div><div class="flbl">Author</div><input type="text" id="na-a" placeholder="Author name"></div>
+          <div class="frow">
+            <div><div class="flbl">Rating</div><select id="na-r"><option value="5">★★★★★</option><option value="4">★★★★☆</option><option value="3">★★★☆☆</option><option value="2">★★☆☆☆</option><option value="1">★☆☆☆☆</option></select></div>
+            <div><div class="flbl">Spine color</div><select id="na-c"><option value="#00D4FF">Cyan</option><option value="#A78BFA">Lavender</option><option value="#34D399">Green</option><option value="#F472B6">Pink</option><option value="#FBBF24">Gold</option><option value="#F87171">Red</option></select></div>
+          </div>
+          <button class="btn btn-p" style="font-size:.8rem;padding:9px;justify-content:center;width:100%;" onclick="addBook()">Add to list</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-hd reveal"><span class="sec-num">07</span><h2>Contact</h2><div class="sec-line"></div></div>
+    <div class="contact-cols">
+      <div class="reveal">
+        <p class="contact-note">Feel free to reach out to discuss mathematics, explore collaboration, or join the Ghent Methusalem Junior Seminar as a speaker or attendee.</p>
+        <div class="contact-rows">
+          <a href="mailto:tapendurana@gmail.com" class="contact-row"><span class="cr-icon">✉</span><div><div class="cr-lbl">Personal email</div><div class="cr-val">tapendurana@gmail.com</div></div></a>
+          <a href="mailto:tapendu.rana@ugent.be" class="contact-row"><span class="cr-icon">🎓</span><div><div class="cr-lbl">University email</div><div class="cr-val">tapendu.rana@ugent.be</div></div></a>
+          <div class="contact-row" style="cursor:default;"><span class="cr-icon">📍</span><div><div class="cr-lbl">Office</div><div class="cr-val">Dept. of Mathematics, Building S8<br>Krijgslaan 281, B-9000 Ghent</div></div></div>
+        </div>
+      </div>
+      <div class="social-col reveal">
+        <a href="https://scholar.google.com/citations?user=ILqQz1YAAAAJ&hl=en" target="_blank" class="slink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/></svg>Google Scholar</a>
+        <a href="https://www.researchgate.net/profile/Tapendu-Rana" target="_blank" class="slink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>ResearchGate</a>
+        <a href="https://www.linkedin.com/in/tapendu-rana-0712289b/" target="_blank" class="slink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+        <a href="https://drive.google.com/file/d/1bgmCQTtldDgyb452GQC2DCquKjfEloOq/view?usp=sharing" target="_blank" class="slink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Curriculum Vitae</a>
+        <a href="https://analysis-pde.org/ghent-methusalem-junior-seminar/" target="_blank" class="slink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>Ghent Methusalem Seminar</a>
+        <a href="https://sites.google.com/view/tapendurana/home" target="_blank" class="slink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>Google Site</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Tapendu Rana · Ghent University · <a href="mailto:tapendurana@gmail.com">tapendurana@gmail.com</a></p>
+</footer>
+
+<script>
+/* ── Theme ── */
+function toggleTheme() {
+  const h = document.documentElement;
+  const next = h.getAttribute('data-theme') === 'night' ? 'day' : 'night';
+  h.setAttribute('data-theme', next);
+  document.getElementById('t-label').textContent = next === 'night' ? 'Night' : 'Day';
+  localStorage.setItem('tr_theme', next);
+  updatePColors();
+}
+(function() {
+  const s = localStorage.getItem('tr_theme');
+  if (s) {
+    document.documentElement.setAttribute('data-theme', s);
+    const l = document.getElementById('t-label');
+    if (l) l.textContent = s === 'night' ? 'Night' : 'Day';
+  }
+})();
+
+/* ── Canvas particles ── */
+const canvas = document.getElementById('hero-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, P = [];
+const NC = [[0,212,255],[167,139,250]];
+const DC = [[8,145,178],[124,58,237]];
+function gc() { return document.documentElement.getAttribute('data-theme')==='night' ? NC : DC; }
+function updatePColors() { const c=gc(); P.forEach(p=>{p.col=c[p.ci];}); }
+function resize() { W=canvas.width=canvas.offsetWidth; H=canvas.height=canvas.offsetHeight; }
+function mp() {
+  const c=gc(), ci=Math.random()<.65?0:1;
+  return { x:Math.random()*W, by:H*.5+(Math.random()-.5)*H*.42,
+    ph:Math.random()*Math.PI*2, fr:.0005+Math.random()*.001,
+    am:18+Math.random()*48, sp:.1+Math.random()*.22,
+    r:.7+Math.random()*2, al:.07+Math.random()*.2, ci, col:c[ci] };
+}
+function init() { P=[]; for(let i=0;i<110;i++) P.push(mp()); }
+function draw(t) {
+  ctx.clearRect(0,0,W,H);
+  P.forEach(p=>{
+    p.x+=p.sp; if(p.x>W+8)p.x=-8;
+    const y=p.by+Math.sin(p.x*p.fr*Math.PI*2+p.ph+t*.0006)*p.am;
+    ctx.beginPath(); ctx.arc(p.x,y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(${p.col[0]},${p.col[1]},${p.col[2]},${p.al})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+window.addEventListener('resize',()=>{resize();init();});
+resize(); init(); draw(0);
+
+/* ── Scroll reveal ── */
+const obs = new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ── Reading list ── */
+function tog(id){document.getElementById(id).classList.toggle('hidden');}
+let books = JSON.parse(localStorage.getItem('tr_bv4')||'null') || [
+  {t:"The Master and Margarita",a:"Mikhail Bulgakov",r:5,c:"#A78BFA"},
+  {t:"Ficciones",a:"Jorge Luis Borges",r:5,c:"#00D4FF"},
+  {t:"Stoner",a:"John Williams",r:5,c:"#34D399"},
+  {t:"Crime and Punishment",a:"Fyodor Dostoevsky",r:5,c:"#F472B6"},
+  {t:"The Stranger",a:"Albert Camus",r:4,c:"#FBBF24"},
+  {t:"Notes from Underground",a:"Fyodor Dostoevsky",r:4,c:"#F87171"},
+  {t:"In Search of Lost Time (Vol. I)",a:"Marcel Proust",r:5,c:"#A78BFA"},
+];
+function save(){localStorage.setItem('tr_bv4',JSON.stringify(books));}
+function st(n){return'★'.repeat(n)+'☆'.repeat(5-n);}
+function renderBooks(){
+  const l=document.getElementById('book-list'); l.innerHTML='';
+  books.forEach(b=>{
+    const d=document.createElement('div'); d.className='book-row';
+    d.innerHTML=`<div class="bspine" style="background:${b.c}"></div><div><div class="btitle">${b.t}</div><div class="bauthor">${b.a}</div></div><div class="bstars">${st(b.r)}</div>`;
+    l.appendChild(d);
+  });
+}
+function addBook(){
+  const t=document.getElementById('na-t').value.trim();
+  const a=document.getElementById('na-a').value.trim();
+  if(!t||!a)return;
+  books.unshift({t,a,r:parseInt(document.getElementById('na-r').value),c:document.getElementById('na-c').value});
+  save(); renderBooks();
+  document.getElementById('na-t').value=''; document.getElementById('na-a').value='';
+  tog('add-form');
+}
+function updCur(){
+  const t=document.getElementById('nc-t').value.trim();
+  const a=document.getElementById('nc-a').value.trim();
+  if(!t||!a)return;
+  document.getElementById('cur-title').textContent=t;
+  document.getElementById('cur-author').textContent=a;
+  document.getElementById('cur-genre').textContent=document.getElementById('nc-g').value;
+  const p=document.getElementById('nc-p').value;
+  if(p){document.getElementById('cur-prog').style.width=p+'%';document.getElementById('cur-prog-lbl').textContent=p+'%';}
+  const n=document.getElementById('nc-n').value.trim();
+  if(n)document.getElementById('cur-note').textContent=`"${n}"`;
+  tog('cur-form');
+  ['nc-t','nc-a','nc-p','nc-n'].forEach(id=>document.getElementById(id).value='');
+}
+renderBooks();
+</script>
+</body>
+</html>
