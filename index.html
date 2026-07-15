@@ -172,29 +172,8 @@ h1 {
 }
 .hero-sub {
   font-size:.95rem; color:var(--text2); max-width:540px;
-  margin-bottom:20px; line-height:1.85;
+  margin-bottom:36px; line-height:1.85;
 }
-/* Hero info strip */
-.hero-info-strip {
-  display:flex; flex-wrap:wrap; gap:0;
-  border:1px solid var(--border); border-radius:8px; overflow:hidden;
-  margin-bottom:36px; max-width:540px;
-}
-.hero-info-item {
-  display:flex; flex-direction:column; padding:10px 16px;
-  background:rgba(255,255,255,0.03); flex:1; min-width:140px;
-  border-right:1px solid var(--border);
-}
-.hero-info-item:last-child { border-right:none; }
-[data-theme="night"] .hero-info-item { background:rgba(255,255,255,0.03); }
-[data-theme="day"]   .hero-info-item { background:rgba(0,0,0,0.02); }
-.hi-lbl {
-  font-family:'JetBrains Mono',monospace; font-size:.56rem; color:var(--text3);
-  letter-spacing:.1em; text-transform:uppercase; margin-bottom:3px;
-}
-.hi-val { font-size:.8rem; color:var(--text); line-height:1.35; }
-.hi-val a { color:var(--link-c); }
-
 .hero-tags { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:40px; }
 .tag {
   font-family:'JetBrains Mono', monospace; font-size:.65rem;
@@ -232,13 +211,7 @@ h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.45rem,2.6vw,1.9re
 ══════════════════════════════════════ */
 .about-cols { display:grid; grid-template-columns:3fr 2fr; gap:60px; align-items:start; }
 .bio p { color:var(--text2); font-size:.95rem; line-height:1.9; margin-bottom:16px; }
-.info-strip { display:flex; flex-direction:column; gap:1px; border:1px solid var(--border); border-radius:10px; overflow:hidden; }
-.info-row { padding:16px 20px; background:var(--bg3); border-bottom:1px solid var(--border); transition:background .15s; }
-.info-row:last-child { border-bottom:none; }
-.info-row:hover { background:var(--bg4); }
-.info-lbl { font-family:'JetBrains Mono',monospace; font-size:.58rem; color:var(--text3); letter-spacing:.12em; text-transform:uppercase; margin-bottom:4px; }
-.info-val { font-size:.88rem; color:var(--text); line-height:1.4; }
-.info-val a { color:var(--link-c); }
+
 
 /* ══════════════════════════════════════
    JOURNEY (Timeline)
@@ -250,16 +223,15 @@ h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.45rem,2.6vw,1.9re
   margin-bottom:28px; padding-bottom:10px; border-bottom:1px solid var(--border);
 }
 .timeline { display:flex; flex-direction:column; gap:0; }
-.tl-item { display:grid; grid-template-columns:100px 1fr; gap:16px; padding-bottom:26px; position:relative; }
+.tl-item { display:grid; grid-template-columns:110px 1fr; gap:18px; padding-bottom:28px; position:relative; }
 .tl-item:not(:last-child)::after {
   content:''; position:absolute;
-  left:99px; top:8px; bottom:0; width:1px;
+  left:109px; top:8px; bottom:0; width:1px;
   background:linear-gradient(to bottom, var(--bdr-acc), transparent);
 }
 .tl-date {
-  font-family:'JetBrains Mono',monospace; font-size:.65rem;
-  color:var(--cyan); letter-spacing:.04em; padding-top:2px; line-height:1.6;
-  opacity:.85;
+  font-family:'JetBrains Mono',monospace; font-size:.68rem;
+  color:var(--text3); letter-spacing:.04em; padding-top:2px; line-height:1.5;
 }
 .tl-body { position:relative; padding-left:18px; }
 .tl-body::before {
@@ -338,58 +310,93 @@ h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.45rem,2.6vw,1.9re
 /* ══════════════════════════════════════
    TRAVEL
 ══════════════════════════════════════ */
+/* Travel legend */
 .travel-legend {
-  display:flex; flex-wrap:wrap; gap:16px;
   font-family:'JetBrains Mono',monospace; font-size:.64rem;
   color:var(--text3); margin-bottom:36px; letter-spacing:.04em;
+  display:flex; flex-wrap:wrap; gap:18px;
 }
-.travel-legend span { display:flex; align-items:center; gap:6px; }
-.leg-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
-
-.travel-year { margin-bottom:44px; }
+/* Current year block */
+.travel-current-year { margin-bottom:40px; }
 .travel-year-hd {
-  display:flex; align-items:center; gap:14px; margin-bottom:20px;
+  display:flex; align-items:center; gap:14px; margin-bottom:24px;
 }
-.travel-year-label {
-  font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:700;
+.travel-year-badge {
+  font-family:'Space Grotesk',sans-serif; font-size:1.05rem; font-weight:700;
   color:var(--text); letter-spacing:-.01em;
 }
-.travel-year-line { flex:1; height:1px; background:var(--border); }
+.travel-year-badge .year-live {
+  display:inline-flex; align-items:center; gap:6px; margin-left:10px;
+  font-family:'JetBrains Mono',monospace; font-size:.58rem; font-weight:400;
+  color:var(--green); letter-spacing:.1em; text-transform:uppercase;
+}
+.travel-year-badge .year-live::before {
+  content:''; width:5px; height:5px; border-radius:50%;
+  background:var(--green); animation:pulse 2s infinite;
+}
+.ty-divider { flex:1; height:1px; background:var(--border); }
 
-/* Timeline-style travel rows */
-.travel-rows { display:flex; flex-direction:column; gap:0; }
-.travel-row {
-  display:grid; grid-template-columns:48px 1fr;
-  gap:0; position:relative;
+/* Month rows */
+.travel-months { display:flex; flex-direction:column; }
+.tm-row {
+  display:grid; grid-template-columns:56px 1fr;
+  border-bottom:1px solid var(--border);
 }
-.travel-row:not(:last-child)::after {
-  content:''; position:absolute;
-  left:47px; top:22px; bottom:0; width:1px;
-  background:var(--border);
-}
-.tr-month-col {
+.tm-row:last-child { border-bottom:none; }
+.tm-name {
   font-family:'JetBrains Mono',monospace; font-size:.62rem;
-  color:var(--text3); letter-spacing:.06em; text-transform:uppercase;
-  padding:14px 0 14px; line-height:1;
-  display:flex; align-items:flex-start; padding-top:16px;
+  color:var(--text3); letter-spacing:.08em; text-transform:uppercase;
+  padding:13px 0; display:flex; align-items:flex-start; padding-top:15px;
 }
-.tr-events-col {
-  padding:10px 0 10px 20px; border-left:1px solid var(--border);
-  margin-left:0; min-height:44px;
+.tm-events {
+  padding:10px 0 10px 20px;
+  border-left:1px solid var(--border);
+  display:flex; flex-wrap:wrap; align-items:flex-start;
+  gap:6px; min-height:44px;
 }
-.tr-event {
-  display:inline-flex; align-items:center; gap:7px;
-  margin:4px 6px 4px 0;
-  padding:5px 11px 5px 8px;
-  border:1px solid var(--border); border-radius:20px;
-  background:var(--bg3); font-size:.75rem; color:var(--text2);
-  transition:all .15s; text-decoration:none; cursor:default;
+.tm-event {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:4px 10px; border-radius:3px;
+  font-size:.75rem; color:var(--text2);
+  background:var(--bg3); border:1px solid var(--border);
+  transition:border-color .15s, color .15s;
+  text-decoration:none; white-space:nowrap;
 }
-.tr-event:hover { border-color:var(--bdr-acc); color:var(--text); }
-a.tr-event { cursor:pointer; }
-a.tr-event:hover { color:var(--cyan); opacity:1; }
-.tr-event-dot { width:5px; height:5px; border-radius:50%; flex-shrink:0; }
-.tr-empty { font-size:.72rem; color:var(--text3); font-style:italic; padding:12px 0 12px 20px; }
+.tm-event:hover { border-color:var(--bdr-acc); color:var(--text); opacity:1; }
+.tm-event-tag {
+  font-family:'JetBrains Mono',monospace; font-size:.56rem;
+  color:var(--text3); letter-spacing:.04em;
+}
+.tm-empty { font-size:.72rem; color:var(--text3); padding:13px 0 13px 20px; }
+
+/* Collapsible earlier years */
+.travel-earlier { border-top:1px solid var(--border); padding-top:28px; }
+.travel-earlier-toggle {
+  display:flex; align-items:center; gap:12px;
+  background:none; border:none; cursor:pointer;
+  font-family:'Space Grotesk',sans-serif; font-size:.9rem; font-weight:600;
+  color:var(--text2); padding:0; margin-bottom:0;
+  transition:color .15s; width:100%;
+}
+.travel-earlier-toggle:hover { color:var(--text); }
+.toggle-arrow {
+  font-size:.7rem; color:var(--text3); transition:transform .25s;
+  margin-left:auto; font-family:'JetBrains Mono',monospace;
+}
+.travel-earlier-toggle.open .toggle-arrow { transform:rotate(180deg); }
+.travel-earlier-content {
+  display:none; margin-top:28px;
+}
+.travel-earlier-content.open { display:block; }
+.travel-past-year { margin-bottom:32px; }
+.travel-past-year-label {
+  font-family:'Space Grotesk',sans-serif; font-size:.85rem; font-weight:600;
+  color:var(--text); margin-bottom:16px;
+  display:flex; align-items:center; gap:12px;
+}
+.travel-past-year-label::after {
+  content:''; flex:1; height:1px; background:var(--border);
+}
 
 /* ══════════════════════════════════════
    READING
@@ -508,8 +515,10 @@ footer a { color:var(--text3); }
   <a href="#hero" class="nav-brand">Tapendu Rana</a>
   <div class="nav-right">
     <ul class="nav-links">
+      <li><a href="#about">About</a></li>
       <li><a href="#journey">Journey</a></li>
-      <li><a href="#research">Research & Publications</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
       <li><a href="#travel">Travel</a></li>
       <li><a href="#reading">Reading</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -530,17 +539,8 @@ footer a { color:var(--text3); }
     <p class="hero-role">Mathematician — Harmonic Analysis & PDE</p>
     <p class="hero-sub">
       Working on singular integrals, maximal functions, and the spectral theory of symmetric spaces
-      at the <strong>Ghent Analysis & PDE Center</strong> under Prof. <a href="https://ruzhansky.org/" target="_blank" style="color:var(--cyan);opacity:1;">Michael Ruzhansky</a>.
-      Together with colleagues, I co-organize the weekly online
-      <a href="https://analysis-pde.org/ghent-methusalem-junior-seminar/" target="_blank" style="color:var(--cyan);opacity:1;">Ghent Methusalem Junior Seminar</a>.
-      If you are interested in giving a talk or attending, feel free to reach out.
+      at the <strong>Ghent Analysis & PDE Center</strong> under Prof. Michael Ruzhansky.
     </p>
-    <div class="hero-info-strip">
-      <div class="hero-info-item"><span class="hi-lbl">Position</span><span class="hi-val">BOF Postdoctoral Researcher</span></div>
-      <div class="hero-info-item"><span class="hi-lbl">Institution</span><span class="hi-val">Ghent University, Belgium</span></div>
-      <div class="hero-info-item"><span class="hi-lbl">Supervisor</span><span class="hi-val"><a href="https://ruzhansky.org/" target="_blank">Prof. Michael Ruzhansky</a></span></div>
-      <div class="hero-info-item"><span class="hi-lbl">Email</span><span class="hi-val"><a href="mailto:tapendurana@gmail.com">tapendurana@gmail.com</a></span></div>
-    </div>
     <div class="hero-tags">
       <span class="tag ac">Harmonic Analysis</span>
       <span class="tag ac">Lie Groups</span>
@@ -557,18 +557,30 @@ footer a { color:var(--text3); }
   </div>
 </section>
 
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="container">
+    <div class="sec-hd reveal"><span class="sec-num">01</span><h2>About</h2><div class="sec-line"></div></div>
+    <div class="bio reveal" style="max-width:720px;">
+      <p>I am a BOF postdoctoral researcher in the <strong>Ghent Analysis &amp; PDE Center</strong> at Ghent University, Belgium, working under the supervision of Prof. <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a>.</p>
+      <p>My work sits at the intersection of classical harmonic analysis and modern geometric analysis — studying how integral operators behave on curved and group-theoretic spaces, where the usual Euclidean intuition breaks down in beautiful and often surprising ways.</p>
+      <p>I am particularly drawn to problems on Riemannian symmetric spaces and homogeneous trees: spaces that carry rich algebraic symmetry but whose geometry is fundamentally non-Euclidean. Tools from representation theory, spectral theory, and real analysis all come together here.</p>
+      <p>Together with colleagues, I co-organize the weekly online <a href="https://analysis-pde.org/ghent-methusalem-junior-seminar/" target="_blank">Ghent Methusalem Junior Seminar</a>. If you are interested in giving a talk or attending, feel free to reach out.</p>
+    </div>
+  </div>
+</section>
 
 <!-- ══ JOURNEY ══ -->
 <section id="journey">
   <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">01</span><h2>Journey</h2><div class="sec-line"></div></div>
+    <div class="sec-hd reveal"><span class="sec-num">02</span><h2>Journey</h2><div class="sec-line"></div></div>
     <div class="journey-cols">
 
       <div class="reveal">
         <h3>Positions</h3>
         <div class="timeline">
           <div class="tl-item">
-            <div class="tl-date">2023 –<br><span style="color:var(--green);opacity:1;">present</span></div>
+            <div class="tl-date">2023 —<br>present</div>
             <div class="tl-body">
               <div class="tl-title">BOF Postdoctoral Researcher</div>
               <div class="tl-place">Ghent University, Belgium</div>
@@ -613,7 +625,7 @@ footer a { color:var(--text3); }
 <!-- ══ RESEARCH ══ -->
 <section id="research">
   <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">02</span><h2>Research & Publications</h2><div class="sec-line"></div></div>
+    <div class="sec-hd reveal"><span class="sec-num">03</span><h2>Research</h2><div class="sec-line"></div></div>
     <p class="research-intro reveal">
       My research is centered on harmonic analysis on non-Euclidean geometric structures —
       Riemannian symmetric spaces, homogeneous trees, and Lie groups — where curvature and algebraic symmetry
@@ -650,6 +662,14 @@ footer a { color:var(--text3); }
       </div>
     </div>
 
+    <!-- Pub link -->
+    <p class="reveal" style="margin-bottom:20px;font-size:.88rem;color:var(--text2);">
+      For a full list of publications, see the
+      <a href="https://tapendurana.github.io/#publications" style="color:var(--link-c);border-bottom:1px solid var(--bdr-acc);padding-bottom:1px;">Publications section ↓</a>
+      or visit
+      <a href="https://scholar.google.com/citations?user=ILqQz1YAAAAJ&hl=en" target="_blank" style="color:var(--link-c);border-bottom:1px solid var(--bdr-acc);padding-bottom:1px;">Google Scholar ↗</a>.
+    </p>
+
     <!-- Seminar note -->
     <div style="margin-top:8px;padding:20px 24px;border:1px solid var(--border);border-radius:8px;background:var(--bg3);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;" class="reveal">
       <div>
@@ -661,12 +681,15 @@ footer a { color:var(--text3); }
         <a href="https://analysis-pde.org/ghent-methusalem-junior-seminar/" target="_blank" class="btn btn-g" style="font-size:.78rem;padding:7px 16px;">Visit page →</a>
       </div>
     </div>
-    <div style="margin-top:52px;" class="reveal">
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:36px;">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:.64rem;color:var(--text3);letter-spacing:.12em;">—</span>
-        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:-.02em;">Publications</h3>
-        <div style="flex:1;height:1px;background:linear-gradient(to right,var(--bdr-acc),transparent);"></div>
-      </div>
+  </div>
+</section>
+
+<!-- ══ PUBLICATIONS ══ -->
+<section id="publications">
+  <div class="container">
+    <div class="sec-hd reveal"><span class="sec-num">04</span><h2>Publications</h2><div class="sec-line"></div></div>
+
+    <div class="reveal">
       <div class="pub-group-title">Preprints</div>
       <div class="pub-list">
         <div class="pub-item">
@@ -692,7 +715,7 @@ footer a { color:var(--text3); }
             <div class="pub-venue"><em></em>, 2025</div>
             <div class="pub-links">
               <span class="pill pill-pub">Published</span>
-              <a href=https://link.springer.com/article/10.1007/s00209-025-03762-2" target="_blank" class="pill pill-outline">Scholar ↗</a>
+              <a href="https://link.springer.com/article/10.1007/s00209-025-03762-2" target="_blank" class="pill pill-outline">DOI ↗</a>
               <a href="https://www.researchgate.net/profile/Tapendu-Rana" target="_blank" class="pill pill-outline">ResearchGate ↗</a>
             </div>
           </div>
@@ -710,49 +733,69 @@ footer a { color:var(--text3); }
 <!-- ══ TRAVEL ══ -->
 <section id="travel">
   <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">03</span><h2>Travel</h2><div class="sec-line"></div></div>
-    <p class="travel-note reveal">
-      <span>◆ organizer</span><span>† host</span><span>* attended without a talk</span>
-    </p>
+    <div class="sec-hd reveal"><span class="sec-num">05</span><h2>Travel</h2><div class="sec-line"></div></div>
+    <div class="travel-legend reveal">
+      <span>◆ organizer / host</span>
+      <span>* attended without a talk</span>
+      <span>† online</span>
+    </div>
 
-    <div class="travel-year reveal">
-      <div class="travel-year-label">2025</div>
-      <div class="travel-grid">
-        <div class="travel-month"><div class="travel-month-name">Jan</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Feb</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Mar</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Apr</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">May</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Jun</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Jul</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Aug</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Sep</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Oct</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Nov</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Dec</div><div class="travel-event empty">—</div></div>
+    <!-- ── 2025: current year, always expanded ── -->
+    <div class="travel-current-year reveal">
+      <div class="travel-year-hd">
+        <div class="travel-year-badge">2025 <span class="year-live">current</span></div>
+        <div class="ty-divider"></div>
+      </div>
+      <div class="travel-months">
+        <div class="tm-row"><div class="tm-name">Jan</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+        <div class="tm-row"><div class="tm-name">Feb</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+        <div class="tm-row"><div class="tm-name">Mar</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+        <div class="tm-row"><div class="tm-name">Apr</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+        <div class="tm-row"><div class="tm-name">May</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+        <div class="tm-row"><div class="tm-name">Jun</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+        <div class="tm-row"><div class="tm-name">Jul</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+        <div class="tm-row"><div class="tm-name">Aug</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+        <div class="tm-row"><div class="tm-name">Sep</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+        <div class="tm-row"><div class="tm-name">Oct</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+        <div class="tm-row"><div class="tm-name">Nov</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+        <div class="tm-row"><div class="tm-name">Dec</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
       </div>
     </div>
 
-    <div class="travel-year reveal">
-      <div class="travel-year-label">2024</div>
-      <div class="travel-grid">
-        <div class="travel-month"><div class="travel-month-name">Jan</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Feb</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Mar</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Apr</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">May</div><div class="travel-event">Ghent (Seminar◆)</div></div>
-        <div class="travel-month"><div class="travel-month-name">Jun</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Jul</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Aug</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Sep</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Oct</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Nov</div><div class="travel-event empty">—</div></div>
-        <div class="travel-month"><div class="travel-month-name">Dec</div><div class="travel-event empty">—</div></div>
+    <!-- ── Earlier years: collapsed by default ── -->
+    <div class="travel-earlier reveal">
+      <button class="travel-earlier-toggle" onclick="toggleEarlierYears(this)" aria-expanded="false">
+        Earlier Years
+        <span class="toggle-arrow">▼</span>
+      </button>
+      <div class="travel-earlier-content" id="earlier-years">
+
+        <!-- 2024 -->
+        <div class="travel-past-year">
+          <div class="travel-past-year-label">2024</div>
+          <div class="travel-months">
+            <div class="tm-row"><div class="tm-name">Jan</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+            <div class="tm-row"><div class="tm-name">Feb</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+            <div class="tm-row"><div class="tm-name">Mar</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+            <div class="tm-row"><div class="tm-name">Apr</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+            <div class="tm-row"><div class="tm-name">May</div><div class="tm-events">
+              <span class="tm-event">Ghent <span class="tm-event-tag">Seminar◆</span></span>
+            </div></div>
+            <div class="tm-row"><div class="tm-name">Jun</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+            <div class="tm-row"><div class="tm-name">Jul</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+            <div class="tm-row"><div class="tm-name">Aug</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+            <div class="tm-row"><div class="tm-name">Sep</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+            <div class="tm-row"><div class="tm-name">Oct</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+            <div class="tm-row"><div class="tm-name">Nov</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+            <div class="tm-row"><div class="tm-name">Dec</div><div class="tm-events"><span class="tm-empty">—</span></div></div>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <p style="font-size:.75rem;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-top:8px;" class="reveal">
-      Update this section by editing the HTML — each month is a <code style="color:var(--text2);">.travel-month</code> block.
+    <p style="font-size:.7rem;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-top:28px;" class="reveal">
+      To add an event, paste a <code style="color:var(--text2);">&lt;span class="tm-event"&gt;City &lt;span class="tm-event-tag"&gt;(Type)&lt;/span&gt;&lt;/span&gt;</code> into the matching month row.
     </p>
   </div>
 </section>
@@ -760,7 +803,7 @@ footer a { color:var(--text3); }
 <!-- ══ READING ══ -->
 <section id="reading">
   <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">04</span><h2>Reading List</h2><div class="sec-line"></div></div>
+    <div class="sec-hd reveal"><span class="sec-num">06</span><h2>Reading List</h2><div class="sec-line"></div></div>
     <div class="reading-cols">
       <div class="reveal">
         <div class="reading-label"><span class="pulse-dot"></span>Currently reading</div>
@@ -805,7 +848,7 @@ footer a { color:var(--text3); }
 <!-- ══ CONTACT ══ -->
 <section id="contact">
   <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">05</span><h2>Contact</h2><div class="sec-line"></div></div>
+    <div class="sec-hd reveal"><span class="sec-num">07</span><h2>Contact</h2><div class="sec-line"></div></div>
     <div class="contact-cols">
       <div class="reveal">
         <p class="contact-note">Feel free to reach out to discuss mathematics, explore collaboration, or join the Ghent Methusalem Junior Seminar as a speaker or attendee.</p>
@@ -928,6 +971,15 @@ function updCur(){
   ['nc-t','nc-a','nc-p','nc-n'].forEach(id=>document.getElementById(id).value='');
 }
 renderBooks();
+
+/* ── Travel toggle ── */
+function toggleEarlierYears(btn) {
+  const content = document.getElementById('earlier-years');
+  const isOpen = content.classList.contains('open');
+  content.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  btn.setAttribute('aria-expanded', String(!isOpen));
+}
 </script>
 </body>
 </html>
