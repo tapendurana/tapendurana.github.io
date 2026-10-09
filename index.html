@@ -273,10 +273,16 @@ h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.45rem,2.6vw,1.9re
    PUBLICATIONS
 ══════════════════════════════════════ */
 .pub-group-title {
-  font-family:'Space Grotesk',sans-serif; font-size:.78rem; font-weight:600;
-  color:var(--text3); letter-spacing:.12em; text-transform:uppercase;
-  margin-bottom:20px; margin-top:40px; padding-bottom:8px;
-  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:12px;
+  font-family:'Space Grotesk',sans-serif; font-size:1.02rem; font-weight:700;
+  color:var(--text); letter-spacing:-.005em;
+  margin-top:48px; margin-bottom:6px; padding:12px 16px;
+  background:var(--bg3); border-left:3px solid var(--cyan); border-radius:0 6px 6px 0;
+}
+.pub-group-title span {
+  font-family:'JetBrains Mono',monospace; font-size:.68rem; font-weight:500;
+  color:var(--cyan)!important; background:var(--cyan-dim);
+  padding:2px 9px; border-radius:999px; letter-spacing:0;
 }
 .pub-group-title:first-of-type { margin-top:0; }
 .pub-list { display:flex; flex-direction:column; gap:0; }
@@ -296,7 +302,7 @@ h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.45rem,2.6vw,1.9re
   margin-bottom:5px; line-height:1.5;
 }
 .pub-authors { font-size:.8rem; color:var(--text2); margin-bottom:4px; font-style:italic; }
-.pub-authors strong { font-style:normal; color:var(--text); font-weight:500; }
+.pub-authors strong { font-style:normal; color:inherit; font-weight:inherit; }
 .pub-venue { font-size:.78rem; color:var(--text3); margin-bottom:10px; line-height:1.5; }
 .pub-venue em { color:var(--lavender); font-style:normal; }
 .pub-links { display:flex; gap:7px; flex-wrap:wrap; }
@@ -312,6 +318,32 @@ h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.45rem,2.6vw,1.9re
   background:var(--green-dim);
 }
 [data-theme="day"] .pill-pub { color:var(--green); border-color:rgba(5,150,105,.25); background:rgba(5,150,105,.07); }
+
+
+/* ══════════════════════════════════════
+   ACTIVITIES
+══════════════════════════════════════ */
+.act-sub {
+  font-family:'Space Grotesk',sans-serif; font-size:.82rem; font-weight:600;
+  color:var(--text3); letter-spacing:.12em; text-transform:uppercase;
+  margin:0 0 18px; padding-bottom:10px; border-bottom:1px solid var(--border);
+}
+.talk { display:grid; grid-template-columns:84px 1fr; gap:16px; padding:14px 0; border-bottom:1px solid var(--border); }
+.talk:last-child { border-bottom:none; }
+.talk-date { font-family:'JetBrains Mono',monospace; font-size:.68rem; color:var(--cyan); padding-top:3px; }
+.talk-title { font-size:.92rem; font-weight:500; color:var(--text); line-height:1.5; }
+.talk-kind { font-family:'JetBrains Mono',monospace; font-size:.58rem; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--lavender); border:1px solid var(--border); border-radius:3px; padding:1px 6px; margin-left:6px; vertical-align:2px; }
+.talk-where { font-size:.8rem; color:var(--text2); margin-top:2px; }
+.act-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:36px; margin-top:52px; }
+.act-list { list-style:none; display:flex; flex-direction:column; gap:14px; }
+.act-list li { font-size:.85rem; color:var(--text2); line-height:1.6; }
+.act-list li b { display:block; font-weight:500; color:var(--text); }
+.act-list li span { font-family:'JetBrains Mono',monospace; font-size:.66rem; color:var(--text3); }
+.seminar-list { columns:2; column-gap:36px; margin-top:8px; }
+.seminar-list div { break-inside:avoid; font-size:.82rem; color:var(--text2); padding:7px 0; border-bottom:1px solid var(--border); }
+.seminar-list span { font-family:'JetBrains Mono',monospace; font-size:.66rem; color:var(--cyan); margin-right:10px; }
+@media(max-width:800px){ .act-grid{grid-template-columns:1fr;gap:28px;} .seminar-list{columns:1;} .talk{grid-template-columns:64px 1fr;} }
 
 /* ══════════════════════════════════════
    TRAVEL — horizontal month timeline
@@ -441,6 +473,20 @@ h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.45rem,2.6vw,1.9re
 .flbl { font-family:'JetBrains Mono',monospace; font-size:.57rem; color:var(--text3); letter-spacing:.1em; text-transform:uppercase; margin-bottom:3px; }
 .hidden { display:none!important; }
 
+
+/* ── Bookshelf ── */
+.shelves { display:grid; grid-template-columns:repeat(2, 1fr); gap:28px; align-items:start; }
+.shelf { border:1px solid var(--border); border-radius:10px; overflow:hidden; background:var(--bg3); }
+.shelf-hd { display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid var(--border);
+  font-family:'Space Grotesk',sans-serif; font-size:.8rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--text); }
+.shelf-hd i { width:8px; height:8px; border-radius:2px; flex-shrink:0; }
+.shelf-hd span { margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:.64rem; font-weight:400; color:var(--text3); letter-spacing:.04em; }
+.shelf .book-row { background:transparent; }
+.cur-wrap { display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px; margin-bottom:44px; }
+.reading-meta { font-size:.8rem; color:var(--text3); margin:-30px 0 32px; }
+.reading-meta a { color:var(--text2); }
+@media(max-width:800px){ .shelves{grid-template-columns:1fr;} }
+
 /* ══════════════════════════════════════
    CONTACT
 ══════════════════════════════════════ */
@@ -498,6 +544,7 @@ footer a { color:var(--text3); }
     <ul class="nav-links">
       <li><a href="#journey">Journey</a></li>
       <li><a href="#research">Research</a></li>
+      <li><a href="#activities">Activities</a></li>
       <li><a href="#travel">Travel</a></li>
       <li><a href="#reading">Reading</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -513,18 +560,21 @@ footer a { color:var(--text3); }
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="hero-inner">
-    <div class="eyebrow">BOF Postdoctoral Researcher · Ghent University</div>
+    <div class="eyebrow">BOF Postdoctoral Fellow · Ghent University</div>
     <h1><span class="hero-name">Tapendu Rana</span></h1>
     <p class="hero-role">Mathematician — Harmonic Analysis & PDE</p>
     <p class="hero-sub">
-      Working on singular integrals, maximal functions, and the spectral theory of symmetric spaces
-      at the <strong>Ghent Analysis & PDE Center</strong> under Prof. Michael Ruzhansky.
+      Working on weighted estimates and Fourier inequalities, singular integrals, maximal functions and
+      pseudo-differential operators on symmetric spaces and Lie groups, at the <strong>Ghent Analysis & PDE Center</strong> under Prof. Michael Ruzhansky.
     </p>
     <div class="hero-tags">
       <span class="tag ac">Harmonic Analysis</span>
+      <span class="tag ac">Weighted Inequalities</span>
+      <span class="tag ac">Fourier Inequalities</span>
       <span class="tag ac">Lie Groups</span>
       <span class="tag lv">Pseudo-differential Operators</span>
       <span class="tag lv">Singular Integrals</span>
+      <span class="tag lv">Maximal Functions</span>
       <span class="tag">Riemannian Symmetric Spaces</span>
       <span class="tag">Homogeneous Trees</span>
     </div>
@@ -541,65 +591,70 @@ footer a { color:var(--text3); }
   <div class="container">
     <div class="sec-hd reveal"><span class="sec-num">01</span><h2>Journey</h2><div class="sec-line"></div></div>
     <div class="journey-cols">
-
       <div class="reveal">
         <h3>Positions</h3>
         <div class="timeline">
           <div class="tl-item">
-            <div class="tl-date">2023 —<br><span style="color:var(--green);font-weight:600;">present</span></div>
+            <div class="tl-date">Oct 2024 —<br><span style="color:var(--green);font-weight:600;">present</span></div>
             <div class="tl-body">
-              <div class="tl-title">BOF Postdoctoral Researcher</div>
-              <div class="tl-place">Ghent University, Belgium</div>
-              <div class="tl-note">Mentor: <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky ↗</a></div>
+              <div class="tl-title">BOF Postdoctoral Fellow</div>
+              <div class="tl-place">Ghent Analysis &amp; PDE Center, Ghent University, Belgium</div>
+              <div class="tl-note">Project: <em>Pseudo-differential operators and weighted estimates on harmonic NA groups</em><br>Promotor: <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky ↗</a></div>
             </div>
           </div>
           <div class="tl-item">
-            <div class="tl-date">Before<br>2023</div>
+            <div class="tl-date">Feb 2023 —<br>Sep 2024</div>
+            <div class="tl-body">
+              <div class="tl-title">Postdoctoral Researcher</div>
+              <div class="tl-place">Ghent Analysis &amp; PDE Center, Ghent University, Belgium</div>
+              <div class="tl-note">Supervisor: <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky ↗</a></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Jul 2017 —<br>Jan 2023</div>
+            <div class="tl-body">
+              <div class="tl-title">Ph.D. Research Fellow</div>
+              <div class="tl-place">Department of Mathematics, IIT Bombay, India</div>
+              <div class="tl-note">Supervisor: <a href="https://sites.google.com/site/spusti" target="_blank">Sanjoy Pusti ↗</a></div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Jul 2016 —<br>Jul 2017</div>
             <div class="tl-body">
               <div class="tl-title">Assistant Professor</div>
-              <div class="tl-place">Siksha 'O' Anusandhan University, India</div>
-              <div class="tl-note">Taught for over a year</div>
-            </div>
-          </div>
-          <div class="tl-item">
-            <div class="tl-date">Ph.D.<br>years</div>
-            <div class="tl-body">
-              <div class="tl-title">Teaching Assistant</div>
-              <div class="tl-place">IIT Bombay, India</div>
-              <div class="tl-note">Calculus · Differential Equations · Numerical Analysis · Complex Analysis</div>
+              <div class="tl-place">Centre for Applied Mathematics, ITER, Siksha 'O' Anusandhan University, Bhubaneswar, India</div>
             </div>
           </div>
         </div>
       </div>
-
       <div class="reveal">
         <h3>Education</h3>
         <div class="timeline">
           <div class="tl-item">
-            <div class="tl-date">Ph.D.</div>
+            <div class="tl-date">2017 —<br>2023</div>
             <div class="tl-body">
-              <div class="tl-title">Doctor of Philosophy in Mathematics</div>
-              <div class="tl-place">Indian Institute of Technology (IIT), Bombay</div>
-              <div class="tl-note">Thesis on Wiener Tauberian theorems on semisimple Lie groups</div>
+              <div class="tl-title">Ph.D. in Mathematics</div>
+              <div class="tl-place">IIT Bombay, India</div>
+              <div class="tl-note">Thesis: <em>Wiener Tauberian Theorems and Pseudo-Differential Operators on Symmetric Spaces</em><br>Advisor: Sanjoy Pusti · Defended 9 January 2023</div>
             </div>
           </div>
           <div class="tl-item">
-            <div class="tl-date">M.Sc.</div>
+            <div class="tl-date">2014 —<br>2016</div>
             <div class="tl-body">
-              <div class="tl-title">Master of Science in Mathematics</div>
-              <div class="tl-place">Indian Institute of Technology (IIT), Kanpur </div>
+              <div class="tl-title">M.Sc. in Mathematics</div>
+              <div class="tl-place">IIT Kanpur, India</div>
+              <div class="tl-note">Project: <em>Compact Families of Meromorphic Functions and Julia Sets</em><br>Supervisor: Shobha Madan</div>
             </div>
           </div>
           <div class="tl-item">
-            <div class="tl-date">B.Sc.</div>
+            <div class="tl-date">2011 —<br>2014</div>
             <div class="tl-body">
-              <div class="tl-title">Bachelor of Science in Mathematics</div>
-              <div class="tl-place">Ramakrishna Mission Residential College (Autonomous), Narendrapur</div>
+              <div class="tl-title">B.Sc. in Mathematics</div>
+              <div class="tl-place">Ramakrishna Mission Residential College (Autonomous), Narendrapur, India</div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -645,31 +700,19 @@ footer a { color:var(--text3); }
       </div>
     </div>
 
-    <!-- Seminar note -->
-    <div style="margin-top:8px;padding:20px 24px;border:1px solid var(--border);border-radius:8px;background:var(--bg3);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;" class="reveal">
-      <div>
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:.92rem;font-weight:600;margin-bottom:6px;">Ghent Methusalem Junior Seminar</div>
-        <div style="font-size:.82rem;color:var(--text2);">Weekly online research seminar · Harmonic analysis &amp; PDE · Open to all</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-        <span style="font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:4px 10px;border-radius:20px;background:var(--green-dim);border:1px solid rgba(52,211,153,.25);color:var(--green);white-space:nowrap;">● Active · Weekly</span>
-        <a href="https://analysis-pde.org/ghent-methusalem-junior-seminar/" target="_blank" class="btn btn-g" style="font-size:.78rem;padding:7px 16px;">Visit page →</a>
-      </div>
-    </div>
-
     <!-- ── Publications ── -->
     <div class="reveal" id="publications" style="margin-top:56px;scroll-margin-top:80px;">
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
         <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:-.02em;color:var(--text);white-space:nowrap;">Publications</h3>
         <div style="flex:1;height:1px;background:linear-gradient(to right,var(--bdr-acc),transparent);"></div>
       </div>
-      <div class="pub-group-title">Published / Accepted Articles <span style="color:var(--text3);font-weight:400;">· 7</span></div>
+      <div class="pub-group-title">Published / Accepted Articles <span>7</span></div>
       <div class="pub-list">
         <div class="pub-item">
           <div class="pub-n">1</div>
           <div>
             <div class="pub-title">L<sup>p</sup>–L<sup>q</sup> Fourier multipliers and Hausdorff–Young–Paley inequalities on Riemannian symmetric spaces of noncompact type</div>
-            <div class="pub-authors"><strong>Tapendu Rana</strong>, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
+            <div class="pub-authors">Tapendu Rana, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
             <div class="pub-venue"><em>Journal of Geometric Analysis</em>, 2026</div>
             <div class="pub-links"><span class="pill pill-pub">To appear</span><a href="https://arxiv.org/abs/2409.17969" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
           </div>
@@ -678,8 +721,8 @@ footer a { color:var(--text3); }
           <div class="pub-n">2</div>
           <div>
             <div class="pub-title">Weighted estimates for Hardy–Littlewood maximal functions on Harmonic NA groups</div>
-            <div class="pub-authors"><a href="https://www.researchgate.net/profile/Pritam-Ganguly" target="_blank">Pritam Ganguly</a>, <strong>Tapendu Rana</strong>, <a href="https://scholar.google.co.in/citations?user=i1wvpNMAAAAJ&hl=en" target="_blank">Jayanta Sarkar</a></div>
-            <div class="pub-venue"><em>Mathematische Zeitschrift</em>, 2025</div>
+            <div class="pub-authors"><a href="https://www.researchgate.net/profile/Pritam-Ganguly" target="_blank">Pritam Ganguly</a>, Tapendu Rana, <a href="https://scholar.google.co.in/citations?user=i1wvpNMAAAAJ&hl=en" target="_blank">Jayanta Sarkar</a></div>
+            <div class="pub-venue"><em>Mathematische Zeitschrift</em> 310, Paper No. 55 (2025)</div>
             <div class="pub-links"><a href="https://link.springer.com/article/10.1007/s00209-025-03762-2" target="_blank" class="pill pill-outline">DOI ↗</a><a href="https://doi.org/10.48550/arXiv.2307.10806" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
           </div>
         </div>
@@ -687,8 +730,8 @@ footer a { color:var(--text3); }
           <div class="pub-n">3</div>
           <div>
             <div class="pub-title">Pseudo-differential operators on radial sections of line bundles over the Poincaré upper half plane</div>
-            <div class="pub-authors"><strong>Tapendu Rana</strong>, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
-            <div class="pub-venue"><em>Annali della Scuola Normale Superiore di Pisa, Classe di Scienze</em>, 2024</div>
+            <div class="pub-authors">Tapendu Rana, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
+            <div class="pub-venue"><em>Annali della Scuola Normale Superiore di Pisa, Classe di Scienze</em>, 2024 (online)</div>
             <div class="pub-links"><a href="http://dx.doi.org/10.2422/2036-2145.202311_003" target="_blank" class="pill pill-outline">DOI ↗</a><a href="https://arxiv.org/abs/2310.11371" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
           </div>
         </div>
@@ -696,17 +739,17 @@ footer a { color:var(--text3); }
           <div class="pub-n">4</div>
           <div>
             <div class="pub-title">L<sup>p</sup>-boundedness of pseudo-differential operators on rank one Riemannian symmetric spaces of noncompact type</div>
-            <div class="pub-authors"><a href="https://sites.google.com/site/spusti" target="_blank">Sanjoy Pusti</a>, <strong>Tapendu Rana</strong></div>
-            <div class="pub-venue"><em>Mathematische Zeitschrift</em>, 2023</div>
-            <div class="pub-links"><a href="https://mathscinet.ams.org/mathscinet/article?mr=4624560" target="_blank" class="pill pill-outline">MathSciNet ↗</a><a href="https://arxiv.org/abs/2204.12327" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+            <div class="pub-authors"><a href="https://sites.google.com/site/spusti" target="_blank">Sanjoy Pusti</a>, Tapendu Rana</div>
+            <div class="pub-venue"><em>Mathematische Zeitschrift</em> 305, Paper No. 2 (2023)</div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/s00209-023-03327-1" target="_blank" class="pill pill-outline">DOI ↗</a><a href="https://mathscinet.ams.org/mathscinet/article?mr=4624560" target="_blank" class="pill pill-outline">MathSciNet ↗</a><a href="https://arxiv.org/abs/2204.12327" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
           </div>
         </div>
         <div class="pub-item">
           <div class="pub-n">5</div>
           <div>
             <div class="pub-title">L<sup>p</sup>-boundedness of pseudo-differential operators on homogeneous trees</div>
-            <div class="pub-authors"><strong>Tapendu Rana</strong>, <a href="https://www.researchgate.net/profile/Sumit-Rano" target="_blank">Sumit Kumar Rano</a></div>
-            <div class="pub-venue"><em>Studia Mathematica</em>, 2023</div>
+            <div class="pub-authors">Tapendu Rana, <a href="https://www.researchgate.net/profile/Sumit-Rano" target="_blank">Sumit Kumar Rano</a></div>
+            <div class="pub-venue"><em>Studia Mathematica</em> 272(3), 221–244 (2023)</div>
             <div class="pub-links"><a href="https://doi.org/10.4064/sm220816-27-3" target="_blank" class="pill pill-outline">DOI ↗</a><a href="https://doi.org/10.48550/arXiv.2207.14363" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
           </div>
         </div>
@@ -714,7 +757,7 @@ footer a { color:var(--text3); }
           <div class="pub-n">6</div>
           <div>
             <div class="pub-title">Wiener Tauberian theorems for certain Banach algebras on real rank one semisimple Lie groups</div>
-            <div class="pub-authors"><strong>Tapendu Rana</strong></div>
+            <div class="pub-authors">Tapendu Rana</div>
             <div class="pub-venue"><em>Journal of the Australian Mathematical Society</em>, 2023</div>
             <div class="pub-links"><a href="https://doi.org/10.1017/S144678872300006X" target="_blank" class="pill pill-outline">DOI ↗</a></div>
           </div>
@@ -723,78 +766,99 @@ footer a { color:var(--text3); }
           <div class="pub-n">7</div>
           <div>
             <div class="pub-title">A genuine analogue of the Wiener Tauberian theorem for some Lorentz spaces on SL(2,ℝ)</div>
-            <div class="pub-authors"><strong>Tapendu Rana</strong></div>
-            <div class="pub-venue"><em>Forum Mathematicum</em>, 2021</div>
+            <div class="pub-authors">Tapendu Rana</div>
+            <div class="pub-venue"><em>Forum Mathematicum</em> 33, 213–243 (2021)</div>
             <div class="pub-links"><a href="https://doi.org/10.1515/forum-2020-0134" target="_blank" class="pill pill-outline">DOI ↗</a><a href="https://arxiv.org/abs/1910.00840" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
           </div>
         </div>
       </div>
 
-      <div class="pub-group-title">Preprints <span style="color:var(--text3);font-weight:400;">· 6</span></div>
+      <div class="pub-group-title">Edited Volume <span>1</span></div>
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-n">E1</div>
+          <div>
+            <div class="pub-title">Methusalem Seminars at Ghent Analysis and PDE Center. Extended Abstracts 2023/2024</div>
+            <div class="pub-authors">Editors: David Santiago Gomez Cobos, Tapendu Rana, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
+            <div class="pub-venue"><em>Research Perspectives Ghent Analysis and PDE Center, Trends in Mathematics</em>, Birkhäuser, 2026</div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/978-3-032-22493-4" target="_blank" class="pill pill-outline">DOI ↗</a></div>
+          </div>
+      </div>
+
+      <div class="pub-group-title">Preprints <span>7</span></div>
       <div class="pub-list">
         <div class="pub-item">
           <div class="pub-n">P1</div>
           <div>
-            <div class="pub-title">Topological effects on bubbling in the critical Dirichlet problem on hyperbolic domains: 3 ≤ N ≤ 5</div>
-            <div class="pub-authors"><a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a>, <strong>Tapendu Rana</strong>, Zhipeng Yang</div>
-            <div class="pub-venue">Submitted, 2026</div>
-            <div class="pub-links"><a href="https://doi.org/10.48550/arXiv.2608.19356" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+            <div class="pub-title">Fourier inequalities and general monotonicity in hyperbolic geometry</div>
+            <div class="pub-authors">Dmitry V. Gorbachev, Tapendu Rana, Sergey Yu. Tikhonov</div>
+            <div class="pub-venue">Preprint, 2026</div>
+            <div class="pub-links"></div>
           </div>
         </div>
         <div class="pub-item">
           <div class="pub-n">P2</div>
           <div>
-            <div class="pub-title">Profile decomposition and multiple positive solutions for the perturbed CR Yamabe equation on the Heisenberg group</div>
-            <div class="pub-authors">Riju Basak, Souptik Chakraborty, <strong>Tapendu Rana</strong>, Prasun Roychowdhury</div>
+            <div class="pub-title">Topological effects on bubbling in the critical Dirichlet problem on hyperbolic domains: 3 ≤ N ≤ 5</div>
+            <div class="pub-authors"><a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a>, Tapendu Rana, Zhipeng Yang</div>
             <div class="pub-venue">Submitted, 2026</div>
-            <div class="pub-links"><a href="https://doi.org/10.48550/arXiv.2608.16352" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+            <div class="pub-links"><a href="https://doi.org/10.48550/arXiv.2608.19356" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
           </div>
         </div>
         <div class="pub-item">
           <div class="pub-n">P3</div>
           <div>
-            <div class="pub-title">Multiplicity of solutions to the Brezis–Nirenberg problem on hyperbolic spaces</div>
-            <div class="pub-authors"><a href="https://sites.google.com/site/sekharghosh1234" target="_blank">Sekhar Ghosh</a>, <a href="https://sites.google.com/view/vishveshkumar" target="_blank">Vishvesh Kumar</a>, <strong>Tapendu Rana</strong></div>
+            <div class="pub-title">Profile decomposition and multiple positive solutions for the perturbed CR Yamabe equation on the Heisenberg group</div>
+            <div class="pub-authors">Riju Basak, Souptik Chakraborty, Tapendu Rana, Prasun Roychowdhury</div>
             <div class="pub-venue">Submitted, 2026</div>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2603.21171" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+            <div class="pub-links"><a href="https://doi.org/10.48550/arXiv.2608.16352" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
           </div>
         </div>
         <div class="pub-item">
           <div class="pub-n">P4</div>
           <div>
-            <div class="pub-title">Shifted Pitt and uncertainty inequalities on Riemannian symmetric spaces of noncompact type</div>
-            <div class="pub-authors"><strong>Tapendu Rana</strong>, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
-            <div class="pub-venue">Submitted, 2025</div>
-            <div class="pub-links"><a href="https://doi.org/10.48550/arXiv.2506.22792" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+            <div class="pub-title">Multiplicity of solutions to the Brezis–Nirenberg problem on hyperbolic spaces</div>
+            <div class="pub-authors"><a href="https://sites.google.com/site/sekharghosh1234" target="_blank">Sekhar Ghosh</a>, <a href="https://sites.google.com/view/vishveshkumar" target="_blank">Vishvesh Kumar</a>, Tapendu Rana</div>
+            <div class="pub-venue">Submitted, 2026</div>
+            <div class="pub-links"><a href="https://arxiv.org/abs/2603.21171" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
           </div>
         </div>
         <div class="pub-item">
           <div class="pub-n">P5</div>
           <div>
-            <div class="pub-title">Classical inequalities for all Fourier matrix coefficients of SL(2,ℝ) and their applications</div>
-            <div class="pub-authors"><a href="https://sites.google.com/view/vishveshkumar" target="_blank">Vishvesh Kumar</a>, <strong>Tapendu Rana</strong>, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
-            <div class="pub-venue">Submitted, 2024</div>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2409.17918" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+            <div class="pub-title">Shifted Pitt and uncertainty inequalities on Riemannian symmetric spaces of noncompact type</div>
+            <div class="pub-authors">Tapendu Rana, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
+            <div class="pub-venue">Submitted, 2025</div>
+            <div class="pub-links"><a href="https://doi.org/10.48550/arXiv.2506.22792" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
           </div>
         </div>
         <div class="pub-item">
           <div class="pub-n">P6</div>
           <div>
+            <div class="pub-title">Classical inequalities for all Fourier matrix coefficients of SL(2,ℝ) and their applications</div>
+            <div class="pub-authors"><a href="https://sites.google.com/view/vishveshkumar" target="_blank">Vishvesh Kumar</a>, Tapendu Rana, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
+            <div class="pub-venue">Submitted, 2024</div>
+            <div class="pub-links"><a href="https://arxiv.org/abs/2409.17918" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">P7</div>
+          <div>
             <div class="pub-title">Weighted Fourier inequalities and application of restriction theorems on rank one Riemannian symmetric spaces of noncompact type</div>
-            <div class="pub-authors"><a href="https://scholar.google.co.in/citations?user=dOtM8jUAAAAJ&hl=en" target="_blank">Pratyoosh Kumar</a>, <a href="https://sites.google.com/site/spusti" target="_blank">Sanjoy Pusti</a>, <strong>Tapendu Rana</strong>, <a href="https://sites.google.com/view/mandeep-bishnoi/home" target="_blank">Mandeep Singh</a></div>
+            <div class="pub-authors"><a href="https://scholar.google.co.in/citations?user=dOtM8jUAAAAJ&hl=en" target="_blank">Pratyoosh Kumar</a>, <a href="https://sites.google.com/site/spusti" target="_blank">Sanjoy Pusti</a>, Tapendu Rana, <a href="https://sites.google.com/view/mandeep-bishnoi/home" target="_blank">Mandeep Singh</a></div>
             <div class="pub-venue">Submitted, 2024</div>
             <div class="pub-links"><a href="https://arxiv.org/abs/2406.06268" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
           </div>
         </div>
       </div>
 
-      <div class="pub-group-title">Book Chapters <span style="color:var(--text3);font-weight:400;">· 2</span></div>
+      <div class="pub-group-title">Book Chapters <span>2</span></div>
       <div class="pub-list">
         <div class="pub-item">
           <div class="pub-n">C1</div>
           <div>
             <div class="pub-title">Recent advances in harmonic analysis on the group SL(2,ℝ)</div>
-            <div class="pub-authors"><strong>Tapendu Rana</strong></div>
+            <div class="pub-authors">Tapendu Rana</div>
             <div class="pub-venue">In: Kumar, Rottensteiner, Ruzhansky (eds), <em>Pseudo-Differential Operators and Related Topics. PSORT 2024</em>, Trends in Mathematics, vol 8, Birkhäuser</div>
             <div class="pub-links"><a href="https://link.springer.com/chapter/10.1007/978-3-031-71989-9_13" target="_blank" class="pill pill-outline">DOI ↗</a></div>
           </div>
@@ -803,25 +867,14 @@ footer a { color:var(--text3); }
           <div class="pub-n">C2</div>
           <div>
             <div class="pub-title">A note on boundedness properties of pseudo-differential operators on rank one symmetric spaces of noncompact type</div>
-            <div class="pub-authors"><strong>Tapendu Rana</strong></div>
+            <div class="pub-authors">Tapendu Rana</div>
             <div class="pub-venue">In: Ruzhansky, Van Bockstal (eds), <em>Extended Abstracts 2021/2022. APDEGS 2021</em>, Trends in Mathematics, vol 2, Birkhäuser</div>
             <div class="pub-links"><a href="https://link.springer.com/chapter/10.1007/978-3-031-42539-4_12" target="_blank" class="pill pill-outline">DOI ↗</a></div>
           </div>
         </div>
       </div>
 
-      <div class="pub-group-title">Edited Volume <span style="color:var(--text3);font-weight:400;">· 1</span></div>
-      <div class="pub-list">
-        <div class="pub-item">
-          <div class="pub-n">E1</div>
-          <div>
-            <div class="pub-title">Methusalem Seminars at Ghent Analysis and PDE Center. Extended Abstracts 2023/2024</div>
-            <div class="pub-authors">Editors: David Santiago Gomez Cobos, <strong>Tapendu Rana</strong>, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
-            <div class="pub-venue"><em>Research Perspectives Ghent Analysis and PDE Center, Trends in Mathematics</em>, Birkhäuser, 2026</div>
-            <div class="pub-links"><a href="https://doi.org/10.1007/978-3-032-22493-4" target="_blank" class="pill pill-outline">DOI ↗</a></div>
-          </div>
         </div>
-      </div>
 
       <p style="margin-top:24px;font-size:.75rem;color:var(--text3);font-family:'JetBrains Mono',monospace;">
         Also on
@@ -832,10 +885,65 @@ footer a { color:var(--text3); }
   </div>
 </section>
 
+<!-- ══ ACTIVITIES ══ -->
+<section id="activities">
+  <div class="container">
+    <div class="sec-hd reveal"><span class="sec-num">03</span><h2>Activities</h2><div class="sec-line"></div></div>
+
+    <div class="reveal">
+      <div class="act-sub">Talks &amp; lectures</div>
+        <div class="talk"><div class="talk-date">Jul 2026</div><div><div class="talk-title">Fourier inequalities and general monotonicity in hyperbolic geometry<span class="talk-kind">Invited</span></div><div class="talk-where">Workshop on Harmonic Analysis and PDEs, Yunnan Normal University, China</div></div></div>
+        <div class="talk"><div class="talk-date">Jul 2026</div><div><div class="talk-title">Pitt inequalities on Riemannian symmetric spaces of noncompact type<span class="talk-kind">Invited</span></div><div class="talk-where">Aarhus Summer School in Analysis and Probability, Aarhus University, Denmark</div></div></div>
+        <div class="talk"><div class="talk-date">Jan 2026</div><div><div class="talk-title">Pitt's inequalities on Riemannian symmetric spaces of noncompact type<span class="talk-kind">Invited</span></div><div class="talk-where">V Young Researchers Workshop in Harmonic Analysis, Politecnico di Torino, Italy</div></div></div>
+        <div class="talk"><div class="talk-date">Sep 2025</div><div><div class="talk-title">Fourier inequalities on hyperbolic spaces<span class="talk-kind">Invited</span></div><div class="talk-where">Analysis, PDEs and Applications, Yerevan State University, Armenia</div></div></div>
+        <div class="talk"><div class="talk-date">Sep 2025</div><div><div class="talk-title">Harmonic analysis on the Poincaré disc — a brief introduction<span class="talk-kind">Mini-course</span></div><div class="talk-where">Seasonal school “Analysis, PDEs and Applications”, Yerevan State University, Armenia</div></div></div>
+        <div class="talk"><div class="talk-date">Jun 2025</div><div><div class="talk-title">Shifted Pitt and uncertainty inequalities on Riemannian symmetric spaces of noncompact type<span class="talk-kind">Poster</span></div><div class="talk-where">12th International Conference on Harmonic Analysis and PDEs, ICMAT, El Escorial, Spain</div></div></div>
+        <div class="talk"><div class="talk-date">Dec 2024</div><div><div class="talk-title">Around the Hausdorff–Young inequality on Riemannian symmetric spaces of noncompact type<span class="talk-kind">Invited</span></div><div class="talk-where">Conference on harmonic analysis, IIT Bombay, India</div></div></div>
+        <div class="talk"><div class="talk-date">Sep 2024</div><div><div class="talk-title">L<sup>p</sup>-boundedness of pseudo-differential operators on SL(2,ℝ) of fixed K-type<span class="talk-kind">Invited</span></div><div class="talk-where">GF2024 International Conference on Generalized Functions, Università degli Studi di Torino, Italy</div></div></div>
+        <div class="talk"><div class="talk-date">Jan 2024</div><div><div class="talk-title">Pseudo-differential operators on radial sections of line bundles over the Poincaré upper half plane</div><div class="talk-where">Pseudo-Differential Operators and Related Topics, Ghent University, Belgium</div></div></div>
+        <div class="talk"><div class="talk-date">Dec 2023</div><div><div class="talk-title">Weighted estimates for Hardy–Littlewood maximal functions on harmonic NA groups<span class="talk-kind">Invited</span></div><div class="talk-where">18th Discussion Meeting in Harmonic Analysis (Harish-Chandra centenary), IIT Guwahati, India</div></div></div>
+        <div class="talk"><div class="talk-date">Jan 2022</div><div><div class="talk-title">L<sup>p</sup>-boundedness of pseudo-differential operators on rank one Riemannian symmetric spaces of noncompact type<span class="talk-kind">Invited</span></div><div class="talk-where">17th Discussion Meeting in Harmonic Analysis, NISER Bhubaneswar, India</div></div></div>
+    </div>
+
+    <div class="reveal" style="margin-top:44px;">
+      <div class="act-sub">Seminar talks</div>
+      <div class="seminar-list"><div><span>Jul 2026</span>Statistics and Mathematics Unit Seminar, ISI Kolkata</div><div><span>Feb 2024</span>Analysis and Probability Research Group Seminar, IISc Bangalore</div><div><span>Jan 2024</span>Mathematics Department Colloquium, IIT Delhi</div><div><span>Nov 2023</span>Methusalem Junior Seminar, Ghent University</div><div><span>Jan 2023</span>Ph.D. defence seminar, IIT Bombay</div><div><span>Apr 2021</span>Analysis and Probability Research Group Seminar, IISc Bangalore</div></div>
+    </div>
+
+    <div class="act-grid reveal">
+      <div>
+        <div class="act-sub">Awards &amp; grants</div>
+        <ul class="act-list">
+          <li><b>BOF Postdoctoral Fellowship</b>Research Council of Ghent University <span>· 2024</span></li>
+          <li><b>Naik and Rastogi Award for Excellence in Ph.D. Research</b>IIT Bombay <span>· 2022–24</span></li>
+          <li><b>CSIR-UGC NET (JRF)</b>Mathematical Sciences</li>
+          <li><b>GATE</b>Mathematics <span>· 2017</span></li>
+        </ul>
+      </div>
+      <div>
+        <div class="act-sub">Teaching</div>
+        <ul class="act-list">
+          <li><b>Lecturer — Banach Spaces and Banach Algebras</b>M.Sc. course, Ghent University <span>· 2024–26</span></li>
+          <li><b>Assistant Professor</b>ITER, Siksha 'O' Anusandhan University <span>· 2016–17</span></li>
+          <li><b>Teaching Assistant, IIT Bombay</b>Calculus (MA 105) · Linear Algebra (MA 106) · Differential Equations (MA 108) · Numerical Analysis (MA 214) · Linear Algebra, M.Sc. (MA 401)</li>
+        </ul>
+      </div>
+      <div>
+        <div class="act-sub">Service</div>
+        <ul class="act-list">
+          <li><b>Co-organizer, Microlocal Day #13</b>Ghent Analysis &amp; PDE Center <span>· May 2025</span></li>
+          <li><b>Co-editor, Birkhäuser volume</b>Methusalem Seminars, Extended Abstracts 2023/2024 <span>· 2026</span></li>
+          <li><b>Ph.D. examiner</b>Arne Hendrickx, Ghent University <span>· 2026</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ TRAVEL ══ -->
 <section id="travel">
   <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">03</span><h2>Travel</h2><div class="sec-line"></div></div>
+    <div class="sec-hd reveal"><span class="sec-num">04</span><h2>Travel</h2><div class="sec-line"></div></div>
     <div class="tv-legend reveal">
       <span>&#9670; host</span>
       <span>&dagger; online</span>
@@ -853,44 +961,16 @@ footer a { color:var(--text3); }
 <!-- ══ READING ══ -->
 <section id="reading">
   <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">04</span><h2>Reading List</h2><div class="sec-line"></div></div>
-    <div class="reading-cols">
-      <div class="reveal">
-        <div class="reading-label"><span class="pulse-dot"></span>Currently reading</div>
-        <div class="cur-card">
-          <div class="cur-genre" id="cur-genre">Literary Fiction</div>
-          <div class="cur-title" id="cur-title">The Remains of the Day</div>
-          <div class="cur-author" id="cur-author">Kazuo Ishiguro</div>
-          <div class="cur-note" id="cur-note">"A meditation on memory, duty, and the quiet cost of a life lived in perfect service."</div>
-          <div class="prog-wrap"><div class="prog-fill" id="cur-prog" style="width:62%"></div></div>
-          <div class="prog-labels"><span>Progress</span><span id="cur-prog-lbl">62%</span></div>
-        </div>
-        <button class="form-toggle-btn" onclick="tog('cur-form')">+ update currently reading</button>
-        <div class="bform hidden" id="cur-form">
-          <div><div class="flbl">Title</div><input type="text" id="nc-t" placeholder="Book title"></div>
-          <div><div class="flbl">Author</div><input type="text" id="nc-a" placeholder="Author name"></div>
-          <div class="frow">
-            <div><div class="flbl">Genre</div><select id="nc-g"><option>Literary Fiction</option><option>Science Fiction</option><option>Mystery / Thriller</option><option>Fantasy</option><option>Historical Fiction</option><option>Non-Fiction</option><option>Biography</option><option>Philosophy</option><option>Short Stories</option></select></div>
-            <div><div class="flbl">Progress %</div><input type="number" id="nc-p" placeholder="45" min="0" max="100"></div>
-          </div>
-          <div><div class="flbl">Note</div><input type="text" id="nc-n" placeholder="A brief thought..."></div>
-          <button class="btn btn-p" style="font-size:.8rem;padding:9px;justify-content:center;width:100%;" onclick="updCur()">Update</button>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="reading-label"><span class="static-dot"></span>Books I've read</div>
-        <div class="book-list" id="book-list"></div>
-        <button class="form-toggle-btn" onclick="tog('add-form')">+ add a book</button>
-        <div class="bform hidden" id="add-form">
-          <div><div class="flbl">Title</div><input type="text" id="na-t" placeholder="Book title"></div>
-          <div><div class="flbl">Author</div><input type="text" id="na-a" placeholder="Author name"></div>
-          <div class="frow">
-            <div><div class="flbl">Rating</div><select id="na-r"><option value="5">★★★★★</option><option value="4">★★★★☆</option><option value="3">★★★☆☆</option><option value="2">★★☆☆☆</option><option value="1">★☆☆☆☆</option></select></div>
-            <div><div class="flbl">Spine color</div><select id="na-c"><option value="#00D4FF">Cyan</option><option value="#A78BFA">Lavender</option><option value="#34D399">Green</option><option value="#F472B6">Pink</option><option value="#FBBF24">Gold</option><option value="#F87171">Red</option></select></div>
-          </div>
-          <button class="btn btn-p" style="font-size:.8rem;padding:9px;justify-content:center;width:100%;" onclick="addBook()">Add to list</button>
-        </div>
-      </div>
+    <div class="sec-hd reveal"><span class="sec-num">05</span><h2>Reading List</h2><div class="sec-line"></div></div>
+    <p class="reading-meta reveal" id="reading-meta"></p>
+    <!-- Drawn from the CURRENTLY_READING and BOOKS lists in the script at the bottom of this file. -->
+    <div id="cur-block" class="reveal" style="display:none;">
+      <div class="reading-label"><span class="pulse-dot"></span>Currently reading</div>
+      <div class="cur-wrap" id="cur-wrap"></div>
+    </div>
+    <div class="reveal">
+      <div class="reading-label"><span class="static-dot"></span>Books I've read</div>
+      <div class="shelves" id="shelves"></div>
     </div>
   </div>
 </section>
@@ -898,10 +978,10 @@ footer a { color:var(--text3); }
 <!-- ══ CONTACT ══ -->
 <section id="contact">
   <div class="container">
-    <div class="sec-hd reveal"><span class="sec-num">05</span><h2>Contact</h2><div class="sec-line"></div></div>
+    <div class="sec-hd reveal"><span class="sec-num">06</span><h2>Contact</h2><div class="sec-line"></div></div>
     <div class="contact-cols">
       <div class="reveal">
-        <p class="contact-note">Feel free to reach out to discuss mathematics, explore collaboration, or join the Ghent Methusalem Junior Seminar as a speaker or attendee.</p>
+        <p class="contact-note">Feel free to reach out to discuss mathematics or explore collaboration.</p>
         <div class="contact-rows">
           <a href="mailto:tapendurana@gmail.com" class="contact-row"><span class="cr-icon">✉</span><div><div class="cr-lbl">Personal email</div><div class="cr-val">tapendurana@gmail.com</div></div></a>
           <a href="mailto:tapendu.rana@ugent.be" class="contact-row"><span class="cr-icon">🎓</span><div><div class="cr-lbl">University email</div><div class="cr-val">tapendu.rana@ugent.be</div></div></a>
@@ -913,7 +993,6 @@ footer a { color:var(--text3); }
         <a href="https://www.researchgate.net/profile/Tapendu-Rana" target="_blank" class="slink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>ResearchGate</a>
         <a href="https://www.linkedin.com/in/tapendu-rana-0712289b/" target="_blank" class="slink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
         <a href="https://drive.google.com/file/d/1bgmCQTtldDgyb452GQC2DCquKjfEloOq/view?usp=sharing" target="_blank" class="slink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Curriculum Vitae</a>
-        <a href="https://analysis-pde.org/ghent-methusalem-junior-seminar/" target="_blank" class="slink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>Ghent Methusalem Seminar</a>
         <a href="https://sites.google.com/view/tapendurana/home" target="_blank" class="slink"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>Google Site</a>
       </div>
     </div>
@@ -976,51 +1055,86 @@ resize(); init(); draw(0);
 const obs = new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-/* ── Reading list ── */
-function tog(id){document.getElementById(id).classList.toggle('hidden');}
-let books = JSON.parse(localStorage.getItem('tr_bv4')||'null') || [
-  {t:"The Master and Margarita",a:"Mikhail Bulgakov",r:5,c:"#A78BFA"},
-  {t:"Ficciones",a:"Jorge Luis Borges",r:5,c:"#00D4FF"},
-  {t:"Stoner",a:"John Williams",r:5,c:"#34D399"},
-  {t:"Crime and Punishment",a:"Fyodor Dostoevsky",r:5,c:"#F472B6"},
-  {t:"The Stranger",a:"Albert Camus",r:4,c:"#FBBF24"},
-  {t:"Notes from Underground",a:"Fyodor Dostoevsky",r:4,c:"#F87171"},
-  {t:"In Search of Lost Time (Vol. I)",a:"Marcel Proust",r:5,c:"#A78BFA"},
+/* ══════════════════════════════════════════════════════════════
+   READING LIST — edit here to update the Reading section.
+   BOOKS: [shelf, "Title", "Author", rating 1–5 (or 0 for none)]
+   Shelves: "math", "ideas", "growth", "fiction"
+   CURRENTLY_READING: ["Title", "Author", progress % (or 0)]
+   Newest books go at the top of each shelf.
+══════════════════════════════════════════════════════════════ */
+const CURRENTLY_READING = [
+  ["What the Buddha Taught", "Walpola Rahula", 0],
+  ["Early Indians: The Story of Our Ancestors and Where We Came From", "Tony Joseph", 0],
 ];
-function save(){localStorage.setItem('tr_bv4',JSON.stringify(books));}
-function st(n){return'★'.repeat(n)+'☆'.repeat(5-n);}
-function renderBooks(){
-  const l=document.getElementById('book-list'); l.innerHTML='';
-  books.forEach(b=>{
-    const d=document.createElement('div'); d.className='book-row';
-    d.innerHTML=`<div class="bspine" style="background:${b.c}"></div><div><div class="btitle">${b.t}</div><div class="bauthor">${b.a}</div></div><div class="bstars">${st(b.r)}</div>`;
-    l.appendChild(d);
-  });
-}
-function addBook(){
-  const t=document.getElementById('na-t').value.trim();
-  const a=document.getElementById('na-a').value.trim();
-  if(!t||!a)return;
-  books.unshift({t,a,r:parseInt(document.getElementById('na-r').value),c:document.getElementById('na-c').value});
-  save(); renderBooks();
-  document.getElementById('na-t').value=''; document.getElementById('na-a').value='';
-  tog('add-form');
-}
-function updCur(){
-  const t=document.getElementById('nc-t').value.trim();
-  const a=document.getElementById('nc-a').value.trim();
-  if(!t||!a)return;
-  document.getElementById('cur-title').textContent=t;
-  document.getElementById('cur-author').textContent=a;
-  document.getElementById('cur-genre').textContent=document.getElementById('nc-g').value;
-  const p=document.getElementById('nc-p').value;
-  if(p){document.getElementById('cur-prog').style.width=p+'%';document.getElementById('cur-prog-lbl').textContent=p+'%';}
-  const n=document.getElementById('nc-n').value.trim();
-  if(n)document.getElementById('cur-note').textContent=`"${n}"`;
-  tog('cur-form');
-  ['nc-t','nc-a','nc-p','nc-n'].forEach(id=>document.getElementById(id).value='');
-}
-renderBooks();
+const SHELVES = {
+  math:    ["Mathematics & Science", "var(--cyan)"],
+  ideas:   ["History, Ideas & Lives", "var(--amber)"],
+  growth:  ["Mind & Self-Growth",     "var(--green)"],
+  fiction: ["Fiction",                "var(--lavender)"],
+};
+const BOOKS = [
+  ["ideas",  "Sapiens: A Brief History of Humankind", "Yuval Noah Harari", 5],
+  ["growth", "Think and Grow Rich", "Napoleon Hill", 5],
+  ["fiction","A Man Called Ove", "Fredrik Backman", 5],
+  ["fiction","The Silent Patient", "Alex Michaelides", 5],
+  ["growth", "As a Man Thinketh", "James Allen", 5],
+  ["fiction","The Alchemist", "Paulo Coelho", 5],
+  ["math",   "Birth of a Theorem: A Mathematical Adventure", "Cédric Villani", 5],
+  ["growth", "The Monk Who Sold His Ferrari", "Robin Sharma", 5],
+  ["fiction","Dark Matter", "Blake Crouch", 5],
+  ["fiction","The Oath of the Vayuputras (Shiva Trilogy #3)", "Amish Tripathi", 5],
+  ["fiction","The Secret of the Nagas (Shiva Trilogy #2)", "Amish Tripathi", 5],
+  ["fiction","The Immortals of Meluha (Shiva Trilogy #1)", "Amish Tripathi", 5],
+  ["fiction","To Kill a Mockingbird", "Harper Lee", 5],
+  ["fiction","Animal Farm", "George Orwell", 5],
+  ["fiction","1984", "George Orwell", 5],
+  ["fiction","Pride and Prejudice", "Jane Austen", 5],
+  ["ideas",  "Wings of Fire: An Autobiography", "A. P. J. Abdul Kalam", 5],
+  ["math",   "Mathematical Analysis", "Tom M. Apostol", 4],
+  ["math",   "Real Analysis", "H. L. Royden", 5],
+  ["growth", "Men Are from Mars, Women Are from Venus", "John Gray", 5],
+  ["math",   "Functional Analysis", "Balmohan V. Limaye", 5],
+  ["fiction","Jonathan Livingston Seagull", "Richard Bach", 4],
+  ["growth", "Who Will Cry When You Die?", "Robin Sharma", 4],
+  ["growth", "The Leader Who Had No Title", "Robin Sharma", 5],
+  ["fiction","বিশ্বাসঘাতক (Bishwasghatak)", "Narayan Sanyal", 5],
+  ["math",   "Surely You're Joking, Mr. Feynman!", "Richard Feynman", 5],
+  ["growth", "The Power of Your Subconscious Mind", "Joseph Murphy", 5],
+  ["growth", "How to Win Friends & Influence People", "Dale Carnegie", 5],
+  ["fiction","Dune (Dune #1)", "Frank Herbert", 5],
+  ["fiction","The Fault in Our Stars", "John Green", 5],
+  ["fiction","The Time Machine", "H. G. Wells", 4],
+];
+
+(function renderReading() {
+  const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const stars = n => n ? '★'.repeat(n) + '☆'.repeat(5 - n) : '';
+  // Currently reading
+  if (CURRENTLY_READING.length) {
+    document.getElementById('cur-block').style.display = '';
+    document.getElementById('cur-wrap').innerHTML = CURRENTLY_READING.map(([t, a, p]) => `
+      <div class="cur-card">
+        <div class="cur-title">${esc(t)}</div>
+        <div class="cur-author">${esc(a)}</div>
+        ${p ? `<div class="prog-wrap"><div class="prog-fill" style="width:${p}%"></div></div>
+        <div class="prog-labels"><span>Progress</span><span>${p}%</span></div>` : ''}
+      </div>`).join('');
+  }
+  // Shelves
+  document.getElementById('shelves').innerHTML = Object.entries(SHELVES).map(([key, [name, color]]) => {
+    const list = BOOKS.filter(b => b[0] === key);
+    if (!list.length) return '';
+    return `<div class="shelf">
+      <div class="shelf-hd"><i style="background:${color}"></i>${name}<span>${list.length}</span></div>
+      <div class="book-list" style="border:none;border-radius:0;max-height:none;">${list.map(([, t, a, r]) => `
+        <div class="book-row"><div class="bspine" style="background:${color}"></div>
+          <div><div class="btitle">${esc(t)}</div><div class="bauthor">${esc(a)}</div></div>
+          <div class="bstars">${stars(r)}</div></div>`).join('')}
+      </div></div>`;
+  }).join('');
+  document.getElementById('reading-meta').innerHTML =
+    `${BOOKS.length} books read` + (CURRENTLY_READING.length ? ` · ${CURRENTLY_READING.length} in progress` : '');
+})();
 
 
 /* ══════════════════════════════════════════════════════════════
@@ -1035,19 +1149,23 @@ renderBooks();
 const TRAVEL = [
   // 2026
   [2026, 1, "PoliTo Torino", "Conf."],
+  [2026, 4, "CRM Barcelona", "Visit"],
   [2026, 6, "Aarhus", "Conf.*"],
-  [2026, 7, "YNNU Kunming", "Conf."],
   [2026, 7, "Aarhus", "Sum. Sch."],
+  [2026, 7, "YNNU Kunming", "Conf."],
   [2026, 7, "ISI Kolkata", "Seminar"],
+  [2026, 12, "Chennai", "Visit"],
   // 2025
   [2025, 1, "UniMi Milan", "Conf.*"],
-  [2025, 6, "ICMAT El Escorial", "Conf.*"],
+  [2025, 5, "Ghent", "Microlocal Day◆"],
   [2025, 6, "Paseky", "Spring Sch.*"],
+  [2025, 6, "ICMAT El Escorial", "Poster"],
   [2025, 9, "YSU Yerevan", "Conf. + Mini-course"],
+  [2025, 11, "Paderborn", "Visit"],
   [2025, 12, "IISER Mohali", "Conf.*"],
   // 2024
   [2024, 1, "Ghent", "Conf."],
-  [2024, 1, "IIT Delhi", "Colloquium"],
+  [2024, 1, "IIT Delhi", "Visit + Colloquium"],
   [2024, 2, "IISc Bangalore", "Seminar"],
   [2024, 8, "Wrocław", "Conf.*"],
   [2024, 9, "UniTo Torino", "Conf."],
@@ -1066,6 +1184,10 @@ const TRAVEL = [
   // 2019
   [2019, 12, "IISER Bhopal", "Conf.*"],
   [2019, 12, "IIT Bombay", "Conf.*"],
+  // 2018
+  [2018, 12, "NISER Bhubaneswar", "ATM School*"],
+  // 2015
+  [2015, 5, "IIT Kanpur", "Training Prog.*"],
 ];
 
 (function renderTravel() {
