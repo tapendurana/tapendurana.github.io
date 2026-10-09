@@ -314,151 +314,70 @@ h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.45rem,2.6vw,1.9re
 [data-theme="day"] .pill-pub { color:var(--green); border-color:rgba(5,150,105,.25); background:rgba(5,150,105,.07); }
 
 /* ══════════════════════════════════════
-   TRAVEL — horizontal timeline (zhangh-w style)
+   TRAVEL — horizontal month timeline
+   (to add a trip, edit the TRAVEL list in the <script> at the bottom)
 ══════════════════════════════════════ */
-.travel-legend {
-  font-family:'JetBrains Mono',monospace; font-size:.65rem;
-  color:var(--text3); margin-bottom:40px; display:flex; flex-wrap:wrap; gap:20px;
+#travel { background:var(--bg); }
+#travel .container { max-width:1120px; }
+.tv-legend {
+  display:flex; flex-wrap:wrap; gap:28px;
+  font-size:.86rem; color:var(--text2); margin-bottom:8px;
 }
-
-/* Year block */
-.travel-yr { margin-bottom:48px; }
-.travel-yr-label {
-  font-family:'Space Grotesk',sans-serif; font-size:1.35rem; font-weight:700;
-  color:var(--text); letter-spacing:-.02em; margin-bottom:4px;
-  display:flex; align-items:center; gap:12px;
+.tv-year { border-top:1px solid var(--border); padding-top:34px; margin-top:40px; }
+.tv-year-label {
+  font-family:'Space Grotesk',sans-serif; font-size:1.05rem; font-weight:700;
+  letter-spacing:.14em; color:var(--text);
 }
-.travel-yr-live {
-  font-family:'JetBrains Mono',monospace; font-size:.58rem; font-weight:400;
-  color:var(--green); letter-spacing:.12em; text-transform:uppercase;
-  display:inline-flex; align-items:center; gap:5px;
+.tv-scroll { overflow-x:auto; overflow-y:hidden; margin-top:28px; padding-bottom:6px; }
+.tv-scroll::-webkit-scrollbar { height:3px; }
+.tv-scroll::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+.tv-track {
+  display:grid; grid-template-columns:repeat(12, minmax(64px, 1fr));
+  min-width:960px; padding-right:130px; position:relative;
 }
-.travel-yr-live::before {
-  content:''; width:5px; height:5px; border-radius:50%;
-  background:var(--green); animation:pulse 2s infinite; flex-shrink:0;
+.tv-col { display:flex; flex-direction:column; position:relative; }
+.tv-up, .tv-down { position:relative; }
+.tv-up   { display:flex; flex-direction:column; justify-content:flex-end; }
+.tv-down { display:flex; flex-direction:column; justify-content:flex-start; }
+.tv-mid { position:relative; display:flex; justify-content:center; padding:4px 0; }
+.tv-mid::before {
+  content:''; position:absolute; left:0; right:0; top:50%;
+  height:1px; background:var(--border); z-index:0;
 }
-.travel-yr-line {
-  width:100%; height:1px; background:var(--border); margin-bottom:0;
-}
-
-/* Horizontal scroll wrapper */
-.travel-scroll {
-  overflow-x:auto; overflow-y:visible;
-  padding-bottom:8px; margin:0 -2px;
-}
-.travel-scroll::-webkit-scrollbar { height:3px; }
-.travel-scroll::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
-
-/* The timeline itself */
-.tl-track {
-  display:flex; align-items:stretch;
-  min-width:900px; position:relative;
-  padding:120px 24px 120px;  /* room for events above and below */
-}
-
-/* Horizontal rule running through the month dots */
-.tl-track::before {
-  content:'';
-  position:absolute;
-  left:24px; right:24px;
-  top:50%; transform:translateY(-50%);
+.tv-col:last-child .tv-mid::after {
+  content:''; position:absolute; left:100%; width:130px; top:50%;
   height:1px; background:var(--border);
-  z-index:0;
 }
+.tv-month {
+  position:relative; z-index:1;
+  font-family:'Space Grotesk',sans-serif; font-size:.64rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase;
+  padding:5px 12px; border-radius:999px; line-height:1;
+  background:var(--bg); color:var(--text3); border:1px solid var(--border);
+}
+.tv-month.on { background:var(--text); color:var(--bg); border-color:var(--text); }
+[data-theme="night"] .tv-month.on { background:#1a2a50; color:var(--cyan); border-color:var(--bdr-acc); }
+.tv-events {
+  padding-left:50%; white-space:nowrap;
+  font-size:.8rem; line-height:1.75; color:var(--text2);
+}
+.tv-events sup { font-size:.62em; }
+.tv-tick { margin-left:50%; width:1px; height:20px; background:var(--border); }
+.tv-up .tv-tick   { margin-top:4px; }
+.tv-down .tv-tick { margin-bottom:4px; }
 
-   
-/* Each month column */
-.tl-month-col {
-  flex:1; display:flex; flex-direction:column;
-  align-items:center; position:relative; min-width:68px;
-}
-
-/* Events above the line */
-.tl-above {
-  flex:1; display:flex; flex-direction:column;
-  align-items:center; justify-content:flex-end;
-  padding-bottom:16px; min-height:110px;
-  text-align:center;
-}
-
-/* Events below the line */
-.tl-below {
-  flex:1; display:flex; flex-direction:column;
-  align-items:center; justify-content:flex-start;
-  padding-top:16px; min-height:110px;
-  text-align:center;
-}
-
-/* The month bubble */
-.tl-bubble {
-  position:relative; z-index:2;
-  font-family:'JetBrains Mono',monospace; font-size:.62rem;
-  font-weight:500; letter-spacing:.06em; text-transform:uppercase;
-  padding:5px 10px; border-radius:999px;
-  flex-shrink:0;
-  transition:all .15s;
-}
-/* Month with events: filled dark pill */
-.tl-bubble.has-events {
-  background:var(--text); color:var(--bg);
-  box-shadow:0 1px 4px rgba(0,0,0,.18);
-}
-[data-theme="night"] .tl-bubble.has-events {
-  background:#1a2a50; color:var(--cyan);
-  box-shadow:0 0 0 1px var(--bdr-acc);
-}
-/* Month without events: outlined circle */
-.tl-bubble.no-events {
-  background:var(--bg); color:var(--text3);
-  border:1px solid var(--border);
-}
-
-/* Event text lines */
-.tl-event {
-  font-size:.72rem; color:var(--text2);
-  line-height:1.55; text-align:center;
-  margin-bottom:2px; white-space:nowrap;
-}
-.tl-event a {
-  color:var(--text2);
-  border-bottom:1px solid var(--border);
-  padding-bottom:1px;
-}
-.tl-event a:hover { color:var(--cyan); border-color:var(--cyan); opacity:1; }
-.tl-event-type {
-  font-family:'JetBrains Mono',monospace; font-size:.6rem;
-  color:var(--text3); margin-left:1px;
-}
-
-/* Earlier years collapsible */
-.travel-earlier-wrap { border-top:1px solid var(--border); padding-top:28px; }
-.travel-earlier-btn {
-  display:flex; align-items:center; gap:12px;
+.tv-earlier { border-top:1px solid var(--border); margin-top:40px; padding-top:30px; }
+.tv-earlier-btn {
+  display:inline-flex; align-items:center; gap:14px;
   background:none; border:none; cursor:pointer; padding:0;
-  font-family:'Space Grotesk',sans-serif; font-size:.82rem; font-weight:600;
-  color:var(--text2); letter-spacing:.12em; text-transform:uppercase;
-  transition:color .15s;
+  font-family:'Space Grotesk',sans-serif; font-size:1.05rem; font-weight:700;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--text);
 }
-.travel-earlier-btn:hover { color:var(--text); }
-.travel-earlier-btn .t-plus {
-  width:18px; height:18px; border:1px solid var(--border);
-  border-radius:50%; display:flex; align-items:center; justify-content:center;
-  font-size:.65rem; color:var(--text3); transition:all .2s;
-}
-.travel-earlier-btn[aria-expanded="true"] .t-plus { transform:rotate(45deg); color:var(--cyan); border-color:var(--bdr-acc); }
-.travel-earlier-content { display:none; margin-top:32px; }
-.travel-earlier-content.open { display:block; }
-.travel-past-yr { margin-bottom:40px; }
-.travel-past-yr-label {
-  font-family:'Space Grotesk',sans-serif; font-size:1.1rem; font-weight:700;
-  color:var(--text); margin-bottom:20px; padding-bottom:12px;
-  border-bottom:1px solid var(--border);
-}
-
-@media(max-width:800px){
-  .tl-track { min-width:700px; padding:90px 12px; }
-  .tl-above, .tl-below { min-height:80px; }
-}
+.tv-earlier-btn .pm { font-weight:400; color:var(--text2); transition:transform .2s; display:inline-block; }
+.tv-earlier-btn[aria-expanded="true"] .pm { transform:rotate(45deg); }
+.tv-earlier-body { display:none; }
+.tv-earlier-body.open { display:block; }
+.tv-earlier-body .tv-year:first-child { border-top:none; margin-top:12px; }
 
 /* ══════════════════════════════════════
    READING
@@ -594,12 +513,12 @@ footer a { color:var(--text3); }
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="hero-inner">
-    <div class="eyebrow">BOF Postdoctoral Fellow · Ghent University</div>
+    <div class="eyebrow">BOF Postdoctoral Researcher · Ghent University</div>
     <h1><span class="hero-name">Tapendu Rana</span></h1>
     <p class="hero-role">Mathematician — Harmonic Analysis & PDE</p>
     <p class="hero-sub">
       Working on singular integrals, maximal functions, and the spectral theory of symmetric spaces
-      at the <strong>Ghent Analysis & PDE Center</strong> under Prof. Michael Ruzhansky. This website is a work in progress need to be updated.
+      at the <strong>Ghent Analysis & PDE Center</strong> under Prof. Michael Ruzhansky.
     </p>
     <div class="hero-tags">
       <span class="tag ac">Harmonic Analysis</span>
@@ -611,7 +530,7 @@ footer a { color:var(--text3); }
     </div>
     <div class="cta">
       <a href="https://drive.google.com/file/d/1bgmCQTtldDgyb452GQC2DCquKjfEloOq/view?usp=sharing" class="btn btn-p" target="_blank">↓ Download CV</a>
-      <a href="#research" class="btn btn-g">Publications →</a>
+      <a href="#publications" class="btn btn-g">Publications →</a>
       <a href="#contact" class="btn btn-g">Contact →</a>
     </div>
   </div>
@@ -634,6 +553,22 @@ footer a { color:var(--text3); }
               <div class="tl-note">Mentor: <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky ↗</a></div>
             </div>
           </div>
+          <div class="tl-item">
+            <div class="tl-date">Before<br>2023</div>
+            <div class="tl-body">
+              <div class="tl-title">Assistant Professor</div>
+              <div class="tl-place">Siksha 'O' Anusandhan University, India</div>
+              <div class="tl-note">Taught for over a year</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Ph.D.<br>years</div>
+            <div class="tl-body">
+              <div class="tl-title">Teaching Assistant</div>
+              <div class="tl-place">IIT Bombay, India</div>
+              <div class="tl-note">Calculus · Differential Equations · Numerical Analysis · Complex Analysis</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -645,7 +580,7 @@ footer a { color:var(--text3); }
             <div class="tl-body">
               <div class="tl-title">Doctor of Philosophy in Mathematics</div>
               <div class="tl-place">Indian Institute of Technology (IIT), Bombay</div>
-              <div class="tl-note">Thesis on harmonic analysis on symmetric spaces</div>
+              <div class="tl-note">Thesis on Wiener Tauberian theorems on semisimple Lie groups</div>
             </div>
           </div>
           <div class="tl-item">
@@ -674,9 +609,10 @@ footer a { color:var(--text3); }
   <div class="container">
     <div class="sec-hd reveal"><span class="sec-num">02</span><h2>Research</h2><div class="sec-line"></div></div>
     <p class="research-intro reveal">
-      My research is centered on harmonic analysis on non-Euclidean geometric structures —
-      Riemannian symmetric spaces, homogeneous trees, and Lie groups — where curvature and algebraic symmetry
-      force a fundamental rethinking of classical Euclidean techniques.
+      I work in harmonic analysis and PDEs on hyperbolic spaces, Lie groups and homogeneous trees.
+      During my Ph.D., my research revolved around Wiener Tauberian theorems on semisimple Lie groups.
+      Currently, I work on functional and Fourier inequalities and their applications to partial differential equations,
+      as well as on weighted estimates of integral operators.
     </p>
     <div class="interest-list reveal">
       <div class="interest-item">
@@ -720,50 +656,178 @@ footer a { color:var(--text3); }
         <a href="https://analysis-pde.org/ghent-methusalem-junior-seminar/" target="_blank" class="btn btn-g" style="font-size:.78rem;padding:7px 16px;">Visit page →</a>
       </div>
     </div>
-    <!-- Publications merged -->
-    <div class="reveal" style="margin-top:52px;">
+
+    <!-- ── Publications ── -->
+    <div class="reveal" id="publications" style="margin-top:56px;scroll-margin-top:80px;">
       <div style="display:flex;align-items:center;gap:16px;margin-bottom:28px;">
         <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;letter-spacing:-.02em;color:var(--text);white-space:nowrap;">Publications</h3>
         <div style="flex:1;height:1px;background:linear-gradient(to right,var(--bdr-acc),transparent);"></div>
       </div>
-    <div class="reveal">
-      <div class="pub-group-title">Preprints</div>
-      <div class="pub-list">
-        <div class="pub-item">
-          <div class="pub-n">P1</div>
-          <div>
-            <div class="pub-title">Multiplicity of solutions to the Brezis-Nirenberg problem on hyperbolic spaces</div>
-            <div class="pub-authors"><strong> Sekhar Ghosh, Vishvesh Kumar, Tapendu Rana</strong></div>
-            <div class="pub-venue">arXiv preprint</div>
-            <div class="pub-links">
-              <a href="https://scholar.google.com/citations?user=ILqQz1YAAAAJ&hl=en" target="_blank" class="pill pill-outline">arXiv ↗</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="pub-group-title">Published Articles</div>
+      <div class="pub-group-title">Published / Accepted Articles <span style="color:var(--text3);font-weight:400;">· 7</span></div>
       <div class="pub-list">
         <div class="pub-item">
           <div class="pub-n">1</div>
           <div>
-            <div class="pub-title">Weighted estimates for Hardy-Littlewood maximal functions on Harmonic NA groups</div>
-            <div class="pub-authors"><strong>Pritam Ganguly,Tapendu Rana, Jayanta Sarkar</strong></div>
-            <div class="pub-venue"><em></em>, 2025</div>
-            <div class="pub-links">
-              <span class="pill pill-pub">Published</span>
-              <a href="https://link.springer.com/article/10.1007/s00209-025-03762-2" target="_blank" class="pill pill-outline">Scholar ↗</a>
-              <a href="https://www.researchgate.net/profile/Tapendu-Rana" target="_blank" class="pill pill-outline">ResearchGate ↗</a>
-            </div>
+            <div class="pub-title">L<sup>p</sup>–L<sup>q</sup> Fourier multipliers and Hausdorff–Young–Paley inequalities on Riemannian symmetric spaces of noncompact type</div>
+            <div class="pub-authors"><strong>Tapendu Rana</strong>, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
+            <div class="pub-venue"><em>Journal of Geometric Analysis</em>, 2026</div>
+            <div class="pub-links"><span class="pill pill-pub">To appear</span><a href="https://arxiv.org/abs/2409.17969" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
           </div>
         </div>
+        <div class="pub-item">
+          <div class="pub-n">2</div>
+          <div>
+            <div class="pub-title">Weighted estimates for Hardy–Littlewood maximal functions on Harmonic NA groups</div>
+            <div class="pub-authors"><a href="https://www.researchgate.net/profile/Pritam-Ganguly" target="_blank">Pritam Ganguly</a>, <strong>Tapendu Rana</strong>, <a href="https://scholar.google.co.in/citations?user=i1wvpNMAAAAJ&hl=en" target="_blank">Jayanta Sarkar</a></div>
+            <div class="pub-venue"><em>Mathematische Zeitschrift</em>, 2025</div>
+            <div class="pub-links"><a href="https://link.springer.com/article/10.1007/s00209-025-03762-2" target="_blank" class="pill pill-outline">DOI ↗</a><a href="https://doi.org/10.48550/arXiv.2307.10806" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">3</div>
+          <div>
+            <div class="pub-title">Pseudo-differential operators on radial sections of line bundles over the Poincaré upper half plane</div>
+            <div class="pub-authors"><strong>Tapendu Rana</strong>, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
+            <div class="pub-venue"><em>Annali della Scuola Normale Superiore di Pisa, Classe di Scienze</em>, 2024</div>
+            <div class="pub-links"><a href="http://dx.doi.org/10.2422/2036-2145.202311_003" target="_blank" class="pill pill-outline">DOI ↗</a><a href="https://arxiv.org/abs/2310.11371" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">4</div>
+          <div>
+            <div class="pub-title">L<sup>p</sup>-boundedness of pseudo-differential operators on rank one Riemannian symmetric spaces of noncompact type</div>
+            <div class="pub-authors"><a href="https://sites.google.com/site/spusti" target="_blank">Sanjoy Pusti</a>, <strong>Tapendu Rana</strong></div>
+            <div class="pub-venue"><em>Mathematische Zeitschrift</em>, 2023</div>
+            <div class="pub-links"><a href="https://mathscinet.ams.org/mathscinet/article?mr=4624560" target="_blank" class="pill pill-outline">MathSciNet ↗</a><a href="https://arxiv.org/abs/2204.12327" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">5</div>
+          <div>
+            <div class="pub-title">L<sup>p</sup>-boundedness of pseudo-differential operators on homogeneous trees</div>
+            <div class="pub-authors"><strong>Tapendu Rana</strong>, <a href="https://www.researchgate.net/profile/Sumit-Rano" target="_blank">Sumit Kumar Rano</a></div>
+            <div class="pub-venue"><em>Studia Mathematica</em>, 2023</div>
+            <div class="pub-links"><a href="https://doi.org/10.4064/sm220816-27-3" target="_blank" class="pill pill-outline">DOI ↗</a><a href="https://doi.org/10.48550/arXiv.2207.14363" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">6</div>
+          <div>
+            <div class="pub-title">Wiener Tauberian theorems for certain Banach algebras on real rank one semisimple Lie groups</div>
+            <div class="pub-authors"><strong>Tapendu Rana</strong></div>
+            <div class="pub-venue"><em>Journal of the Australian Mathematical Society</em>, 2023</div>
+            <div class="pub-links"><a href="https://doi.org/10.1017/S144678872300006X" target="_blank" class="pill pill-outline">DOI ↗</a></div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">7</div>
+          <div>
+            <div class="pub-title">A genuine analogue of the Wiener Tauberian theorem for some Lorentz spaces on SL(2,ℝ)</div>
+            <div class="pub-authors"><strong>Tapendu Rana</strong></div>
+            <div class="pub-venue"><em>Forum Mathematicum</em>, 2021</div>
+            <div class="pub-links"><a href="https://doi.org/10.1515/forum-2020-0134" target="_blank" class="pill pill-outline">DOI ↗</a><a href="https://arxiv.org/abs/1910.00840" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+          </div>
+        </div>
+      </div>
 
-      <p style="margin-top:20px;font-size:.75rem;color:var(--text3);font-family:'JetBrains Mono',monospace;">
-        Complete list →
-        <a href="https://scholar.google.com/citations?user=ILqQz1YAAAAJ&hl=en" target="_blank" style="color:var(--text2);margin:0 8px;">Google Scholar</a>
-        <a href="https://www.researchgate.net/profile/Tapendu-Rana" target="_blank" style="color:var(--text2);">ResearchGate</a>
+      <div class="pub-group-title">Preprints <span style="color:var(--text3);font-weight:400;">· 6</span></div>
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-n">P1</div>
+          <div>
+            <div class="pub-title">Topological effects on bubbling in the critical Dirichlet problem on hyperbolic domains: 3 ≤ N ≤ 5</div>
+            <div class="pub-authors"><a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a>, <strong>Tapendu Rana</strong>, Zhipeng Yang</div>
+            <div class="pub-venue">Submitted, 2026</div>
+            <div class="pub-links"><a href="https://doi.org/10.48550/arXiv.2608.19356" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">P2</div>
+          <div>
+            <div class="pub-title">Profile decomposition and multiple positive solutions for the perturbed CR Yamabe equation on the Heisenberg group</div>
+            <div class="pub-authors">Riju Basak, Souptik Chakraborty, <strong>Tapendu Rana</strong>, Prasun Roychowdhury</div>
+            <div class="pub-venue">Submitted, 2026</div>
+            <div class="pub-links"><a href="https://doi.org/10.48550/arXiv.2608.16352" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">P3</div>
+          <div>
+            <div class="pub-title">Multiplicity of solutions to the Brezis–Nirenberg problem on hyperbolic spaces</div>
+            <div class="pub-authors"><a href="https://sites.google.com/site/sekharghosh1234" target="_blank">Sekhar Ghosh</a>, <a href="https://sites.google.com/view/vishveshkumar" target="_blank">Vishvesh Kumar</a>, <strong>Tapendu Rana</strong></div>
+            <div class="pub-venue">Submitted, 2026</div>
+            <div class="pub-links"><a href="https://arxiv.org/abs/2603.21171" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">P4</div>
+          <div>
+            <div class="pub-title">Shifted Pitt and uncertainty inequalities on Riemannian symmetric spaces of noncompact type</div>
+            <div class="pub-authors"><strong>Tapendu Rana</strong>, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
+            <div class="pub-venue">Submitted, 2025</div>
+            <div class="pub-links"><a href="https://doi.org/10.48550/arXiv.2506.22792" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">P5</div>
+          <div>
+            <div class="pub-title">Classical inequalities for all Fourier matrix coefficients of SL(2,ℝ) and their applications</div>
+            <div class="pub-authors"><a href="https://sites.google.com/view/vishveshkumar" target="_blank">Vishvesh Kumar</a>, <strong>Tapendu Rana</strong>, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
+            <div class="pub-venue">Submitted, 2024</div>
+            <div class="pub-links"><a href="https://arxiv.org/abs/2409.17918" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">P6</div>
+          <div>
+            <div class="pub-title">Weighted Fourier inequalities and application of restriction theorems on rank one Riemannian symmetric spaces of noncompact type</div>
+            <div class="pub-authors"><a href="https://scholar.google.co.in/citations?user=dOtM8jUAAAAJ&hl=en" target="_blank">Pratyoosh Kumar</a>, <a href="https://sites.google.com/site/spusti" target="_blank">Sanjoy Pusti</a>, <strong>Tapendu Rana</strong>, <a href="https://sites.google.com/view/mandeep-bishnoi/home" target="_blank">Mandeep Singh</a></div>
+            <div class="pub-venue">Submitted, 2024</div>
+            <div class="pub-links"><a href="https://arxiv.org/abs/2406.06268" target="_blank" class="pill pill-outline">arXiv ↗</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-group-title">Book Chapters <span style="color:var(--text3);font-weight:400;">· 2</span></div>
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-n">C1</div>
+          <div>
+            <div class="pub-title">Recent advances in harmonic analysis on the group SL(2,ℝ)</div>
+            <div class="pub-authors"><strong>Tapendu Rana</strong></div>
+            <div class="pub-venue">In: Kumar, Rottensteiner, Ruzhansky (eds), <em>Pseudo-Differential Operators and Related Topics. PSORT 2024</em>, Trends in Mathematics, vol 8, Birkhäuser</div>
+            <div class="pub-links"><a href="https://link.springer.com/chapter/10.1007/978-3-031-71989-9_13" target="_blank" class="pill pill-outline">DOI ↗</a></div>
+          </div>
+        </div>
+        <div class="pub-item">
+          <div class="pub-n">C2</div>
+          <div>
+            <div class="pub-title">A note on boundedness properties of pseudo-differential operators on rank one symmetric spaces of noncompact type</div>
+            <div class="pub-authors"><strong>Tapendu Rana</strong></div>
+            <div class="pub-venue">In: Ruzhansky, Van Bockstal (eds), <em>Extended Abstracts 2021/2022. APDEGS 2021</em>, Trends in Mathematics, vol 2, Birkhäuser</div>
+            <div class="pub-links"><a href="https://link.springer.com/chapter/10.1007/978-3-031-42539-4_12" target="_blank" class="pill pill-outline">DOI ↗</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-group-title">Edited Volume <span style="color:var(--text3);font-weight:400;">· 1</span></div>
+      <div class="pub-list">
+        <div class="pub-item">
+          <div class="pub-n">E1</div>
+          <div>
+            <div class="pub-title">Methusalem Seminars at Ghent Analysis and PDE Center. Extended Abstracts 2023/2024</div>
+            <div class="pub-authors">Editors: David Santiago Gomez Cobos, <strong>Tapendu Rana</strong>, <a href="https://ruzhansky.org/" target="_blank">Michael Ruzhansky</a></div>
+            <div class="pub-venue"><em>Research Perspectives Ghent Analysis and PDE Center, Trends in Mathematics</em>, Birkhäuser, 2026</div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/978-3-032-22493-4" target="_blank" class="pill pill-outline">DOI ↗</a></div>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:24px;font-size:.75rem;color:var(--text3);font-family:'JetBrains Mono',monospace;">
+        Also on
+        <a href="https://scholar.google.com/citations?user=ILqQz1YAAAAJ&hl=en" target="_blank" style="color:var(--text2);margin:0 6px;">Google Scholar ↗</a>
+        <a href="https://www.researchgate.net/profile/Tapendu-Rana" target="_blank" style="color:var(--text2);">ResearchGate ↗</a>
       </p>
-    </div>
     </div>
   </div>
 </section>
@@ -772,265 +836,17 @@ footer a { color:var(--text3); }
 <section id="travel">
   <div class="container">
     <div class="sec-hd reveal"><span class="sec-num">03</span><h2>Travel</h2><div class="sec-line"></div></div>
-    <div class="travel-legend reveal">
-      <span>◆ host</span>
-      <span>† online</span>
+    <div class="tv-legend reveal">
+      <span>&#9670; host</span>
+      <span>&dagger; online</span>
       <span>* attended without a talk</span>
     </div>
-
-    <!-- ══ 2025: current year ══ -->
-    <div class="travel-yr reveal">
-      <div class="travel-yr-label">
-        2025
-        <span class="travel-yr-live">current</span>
-      </div>
-      <div class="travel-scroll">
-        <div class="tl-track">
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Jan</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Feb</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Mar</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Apr</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">May</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Jun</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Jul</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Aug</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Sep</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Oct</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Nov</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Dec</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-        </div>
-      </div>
+    <!-- The timeline below is drawn automatically from the TRAVEL list in the script at the bottom of this file. -->
+    <div id="tv-current" class="reveal"></div>
+    <div class="tv-earlier reveal">
+      <button class="tv-earlier-btn" onclick="toggleEarlier(this)" aria-expanded="false">Earlier years <span class="pm">+</span></button>
+      <div class="tv-earlier-body" id="tv-earlier"></div>
     </div>
-
-    <!-- ══ Earlier Years (collapsed) ══ -->
-    <div class="travel-earlier-wrap reveal">
-      <button class="travel-earlier-btn" onclick="toggleEarlier(this)" aria-expanded="false">
-        Earlier Years
-        <span class="t-plus">+</span>
-      </button>
-      <div class="travel-earlier-content" id="travel-earlier">
-
-        <!-- 2024 -->
-        <div class="travel-past-yr">
-          <div class="travel-past-yr-label">2024</div>
-          <div class="travel-scroll">
-            <div class="tl-track">
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Jan</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Feb</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Mar</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Apr</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble has-events">May</div>
-        <div class="tl-below">
-          <div class="tl-event">Ghent University<span class="tl-event-type"> (Seminar◆)</span></div>
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Jun</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Jul</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Aug</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Sep</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Oct</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Nov</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-      <div class="tl-month-col">
-        <div class="tl-above">
-          
-        </div>
-        <div class="tl-bubble no-events">Dec</div>
-        <div class="tl-below">
-          
-        </div>
-      </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Add more past years here — copy the travel-past-yr block above -->
-
-      </div>
-    </div>
-
-    <p class="reveal" style="font-size:.7rem;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-top:28px;">
-      To add events: add <code style="color:var(--text2);">(place, " (Type)")</code> tuples to the above/below dicts for the month, or directly edit the <code style="color:var(--text2);">tl-above</code>/<code style="color:var(--text2);">tl-below</code> divs in the HTML.
-    </p>
   </div>
 </section>
 
@@ -1105,7 +921,7 @@ footer a { color:var(--text3); }
 </section>
 
 <footer>
-  <p>© 2025 Tapendu Rana · Ghent University · <a href="mailto:tapendurana@gmail.com">tapendurana@gmail.com</a></p>
+  <p>Last updated: October 9, 2026 · © Tapendu Rana · Ghent University</p>
 </footer>
 
 <script>
@@ -1206,10 +1022,94 @@ function updCur(){
 }
 renderBooks();
 
-/* ── Travel earlier years toggle ── */
+
+/* ══════════════════════════════════════════════════════════════
+   TRAVEL LIST — edit here to update the Travel section.
+   One line per trip:  [year, month (1–12), "Place", "Type"]
+   Type markers:  *  attended without a talk   †  online   ◆  host
+   e.g.  [2026, 11, "KU Leuven", "Seminar"],
+         [2026, 12, "Bonn", "Conf.*"],
+   The newest year opens automatically; older years go under
+   "Earlier years". Months with trips get a filled label.
+══════════════════════════════════════════════════════════════ */
+const TRAVEL = [
+  // 2026
+  [2026, 1, "PoliTo Torino", "Conf."],
+  [2026, 6, "Aarhus", "Conf.*"],
+  [2026, 7, "YNNU Kunming", "Conf."],
+  [2026, 7, "Aarhus", "Sum. Sch."],
+  [2026, 7, "ISI Kolkata", "Seminar"],
+  // 2025
+  [2025, 1, "UniMi Milan", "Conf.*"],
+  [2025, 6, "ICMAT El Escorial", "Conf.*"],
+  [2025, 6, "Paseky", "Spring Sch.*"],
+  [2025, 9, "YSU Yerevan", "Conf. + Mini-course"],
+  [2025, 12, "IISER Mohali", "Conf.*"],
+  // 2024
+  [2024, 1, "Ghent", "Conf."],
+  [2024, 1, "IIT Delhi", "Colloquium"],
+  [2024, 2, "IISc Bangalore", "Seminar"],
+  [2024, 8, "Wrocław", "Conf.*"],
+  [2024, 9, "UniTo Torino", "Conf."],
+  [2024, 12, "IIT Bombay", "Conf."],
+  // 2023
+  [2023, 1, "IIT Bombay", "Ph.D. defence"],
+  [2023, 2, "Ghent", "Workshop*"],
+  [2023, 6, "Angers", "Conf.*"],
+  [2023, 8, "Ghent", "Sum. Sch.*"],
+  [2023, 11, "Ghent", "Seminar"],
+  [2023, 12, "IIT Guwahati", "Conf."],
+  // 2022
+  [2022, 1, "NISER Bhubaneswar", "Conf."],
+  // 2021
+  [2021, 4, "IISc Bangalore", "Seminar"],
+  // 2019
+  [2019, 12, "IISER Bhopal", "Conf.*"],
+  [2019, 12, "IIT Bombay", "Conf.*"],
+];
+
+(function renderTravel() {
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  const fmtType = t => esc(t).replace(/([*†◆]+)$/, '<sup>$1</sup>');
+  const years = [...new Set(TRAVEL.map(e => e[0]))].sort((a, b) => b - a);
+
+  function yearBlock(y) {
+    const byMonth = Array.from({length: 12}, () => []);
+    TRAVEL.filter(e => e[0] === y).forEach(e => byMonth[e[1] - 1].push(e));
+    // odd months above the line, even months below — keeps neighbours from colliding
+    const isUp = m => (m + 1) % 2 === 1;
+    const maxUp = Math.max(0, ...byMonth.map((l, m) => isUp(m) ? l.length : 0));
+    const maxDn = Math.max(0, ...byMonth.map((l, m) => !isUp(m) ? l.length : 0));
+    const lineH = 1.75 * 0.8 * 16; // matches .tv-events line-height
+    const upH = maxUp ? maxUp * lineH + 26 : 8;
+    const dnH = maxDn ? maxDn * lineH + 26 : 8;
+
+    const cols = byMonth.map((list, m) => {
+      const ev = list.length
+        ? '<div class="tv-events">' + list.map(e => `<div>${esc(e[2])} (${fmtType(e[3])})</div>`).join('') + '</div>'
+        : '';
+      const tick = list.length ? '<div class="tv-tick"></div>' : '';
+      const up = isUp(m) ? ev + tick : '';
+      const dn = !isUp(m) ? tick + ev : '';
+      return `<div class="tv-col">
+        <div class="tv-up" style="height:${upH}px">${up}</div>
+        <div class="tv-mid"><span class="tv-month${list.length ? ' on' : ''}">${MONTHS[m]}</span></div>
+        <div class="tv-down" style="height:${dnH}px">${dn}</div>
+      </div>`;
+    }).join('');
+    return `<div class="tv-year"><div class="tv-year-label">${y}</div>
+      <div class="tv-scroll"><div class="tv-track">${cols}</div></div></div>`;
+  }
+
+  if (!years.length) return;
+  document.getElementById('tv-current').innerHTML = yearBlock(years[0]);
+  document.getElementById('tv-earlier').innerHTML = years.slice(1).map(yearBlock).join('');
+})();
+
 function toggleEarlier(btn) {
-  const c = document.getElementById('travel-earlier');
-  const open = c.classList.toggle('open');
+  const body = document.getElementById('tv-earlier');
+  const open = body.classList.toggle('open');
   btn.setAttribute('aria-expanded', String(open));
 }
 </script>
