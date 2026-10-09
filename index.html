@@ -394,6 +394,8 @@ h2 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.45rem,2.6vw,1.9re
   font-size:.8rem; line-height:1.75; color:var(--text2);
 }
 .tv-events sup { font-size:.62em; }
+.tv-events.rt { padding-left:0; padding-right:50%; text-align:right; }
+.tv-events.rt + .tv-tick, .tv-tick + .tv-events.rt { }
 .tv-tick { margin-left:50%; width:1px; height:20px; background:var(--border); }
 .tv-up .tv-tick   { margin-top:4px; }
 .tv-down .tv-tick { margin-bottom:4px; }
@@ -1196,11 +1198,50 @@ const TRAVEL = [
   const fmtType = t => esc(t).replace(/([*†◆]+)$/, '<sup>$1</sup>');
   const years = [...new Set(TRAVEL.map(e => e[0]))].sort((a, b) => b - a);
 
+  // Estimate label widths and pick a free side (above/below) for each month.
+  const _ctx = document.createElement('canvas').getContext('2d');
+  function textW(s) {
+    _ctx.font = '400 12.8px Inter, sans-serif';
+    return _ctx.measureText(s).width;
+  }
+  function colWidth() {
+    const host = document.getElementById('tv-current');
+    const w = host && host.clientWidth ? host.clientWidth : 960;
+    return Math.max(69, (Math.max(w, 960) - 130) / 12);
+  }
+  let rightAlign = [];
+  function placeSides(byMonth) {
+    rightAlign = new Array(12).fill(false);
+    const cw = colWidth(), gap = 18;
+    let upEnd = -Infinity, dnEnd = -Infinity, prefer = 'up';
+    return byMonth.map((list, m) => {
+      if (!list.length) return null;
+      const center = m * cw + cw / 2;
+      const width = Math.max(...list.map(e => textW(`${e[2]} (${e[3]})`)));
+      // labels near the end of the year that would run off the edge extend leftwards
+      const right = center + width > 12 * cw + 110;
+      rightAlign[m] = right;
+      const start = right ? center - width : center;
+      const upFree = start >= upEnd + gap, dnFree = start >= dnEnd + gap;
+      let s;
+      if (upFree && dnFree) s = prefer;
+      else if (upFree) s = 'up';
+      else if (dnFree) s = 'down';
+      else s = upEnd <= dnEnd ? 'up' : 'down';   // both busy: use the one that frees up first
+      const end = right ? center : center + width;
+      if (s === 'up') upEnd = end; else dnEnd = end;
+      prefer = s === 'up' ? 'down' : 'up';
+      return s;
+    });
+  }
+
   function yearBlock(y) {
     const byMonth = Array.from({length: 12}, () => []);
     TRAVEL.filter(e => e[0] === y).forEach(e => byMonth[e[1] - 1].push(e));
-    // odd months above the line, even months below — keeps neighbours from colliding
-    const isUp = m => (m + 1) % 2 === 1;
+    // Place each month's labels above or below the line, choosing the side
+    // whose previous labels have already ended, so long labels never overlap.
+    const side = placeSides(byMonth);
+    const isUp = m => side[m] === 'up';
     const maxUp = Math.max(0, ...byMonth.map((l, m) => isUp(m) ? l.length : 0));
     const maxDn = Math.max(0, ...byMonth.map((l, m) => !isUp(m) ? l.length : 0));
     const lineH = 1.75 * 0.8 * 16; // matches .tv-events line-height
@@ -1209,7 +1250,7 @@ const TRAVEL = [
 
     const cols = byMonth.map((list, m) => {
       const ev = list.length
-        ? '<div class="tv-events">' + list.map(e => `<div>${esc(e[2])} (${fmtType(e[3])})</div>`).join('') + '</div>'
+        ? '<div class="tv-events' + (rightAlign[m] ? ' rt' : '') + '">' + list.map(e => `<div>${esc(e[2])} (${fmtType(e[3])})</div>`).join('') + '</div>'
         : '';
       const tick = list.length ? '<div class="tv-tick"></div>' : '';
       const up = isUp(m) ? ev + tick : '';
